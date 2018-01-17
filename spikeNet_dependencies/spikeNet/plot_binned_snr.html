@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of plot_binned_snr</title>
+  <meta name="keywords" content="plot_binned_snr">
+  <meta name="description" content="Plots binned SNR">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>plot_binned_snr
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>Plots binned SNR</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function plot_binned_snr(dff_vector , snr_vector , binrange) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Plots binned SNR
+ Copyright 2016 The Miller Lab, UC Berkeley
+ Author: Kaveh Karbasi</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function plot_binned_snr(dff_vector , snr_vector , binrange)</a>
+0002 <span class="comment">% Plots binned SNR</span>
+0003 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0004 <span class="comment">% Author: Kaveh Karbasi</span>
+0005 colors = {<span class="string">'b'</span>,<span class="string">'g'</span>,<span class="string">'r'</span>,<span class="string">'c'</span>,<span class="string">'m'</span>,<span class="string">'y'</span>,<span class="string">'k'</span>};
+0006 dff_vector(isnan(dff_vector)) = [];
+0007 snr_vector(isnan(snr_vector)) = [];
+0008 spaxes = {}; 
+0009 figure;
+0010 title(<span class="string">'plot of SNR distributions of data binned by  their DFF'</span>)   
+0011 maxIdx = 1;
+0012 maxYlim = 0; 
+0013 <span class="keyword">for</span> ii = 1 : numel(binrange) - 1
+0014     tmp = snr_vector(dff_vector &lt; binrange(ii+1) &amp; dff_vector &gt;= binrange(ii));
+0015     br = -5 : 0.2 : 40;
+0016     tmp_dist = histc(tmp , br);
+0017 
+0018     spaxes{ii} = subplot(1 , numel(binrange) - 1 , ii);
+0019 
+0020     bar(br , tmp_dist , colors{mod(ii,7) + 1});
+0021     title([num2str(binrange(ii)) <span class="string">'-'</span> num2str(binrange(ii+1))])
+0022     yl = ylim;
+0023     <span class="keyword">if</span> yl(2) &gt;maxYlim
+0024         maxYlim = yl(2);
+0025         maxIdx = ii;
+0026     <span class="keyword">end</span>
+0027 <span class="keyword">end</span>
+0028 
+0029 
+0030 <span class="keyword">for</span> jj = 1:numel(spaxes)
+0031     set(spaxes{jj} , <span class="string">'ylim'</span> , [0 maxYlim]);
+0032     set(spaxes{jj} , <span class="string">'xlim'</span> , [-5 40]);
+0033 <span class="keyword">end</span>
+0034 
+0035 linkaxes([spaxes{:}] , <span class="string">'xy'</span>);</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

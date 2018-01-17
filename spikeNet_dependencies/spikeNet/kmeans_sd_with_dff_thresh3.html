@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of kmeans_sd_with_dff_thresh3</title>
+  <meta name="keywords" content="kmeans_sd_with_dff_thresh3">
+  <meta name="description" content="Core kmeans function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>kmeans_sd_with_dff_thresh3
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>Core kmeans function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function [clusters , spikes_cluster_idx , baseline_cluster_idx , rasterSpikeTime , dff1 , dff_snr] = kmeans_sd_with_dff_thresh3(trace_features , ROI_tracein , K , dff_thresh) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Core kmeans function
+ Copyright 2016 The Miller Lab, UC Berkeley
+ Author: Kaveh Karbasi
+ use polynomial regression to flatten the trace and calc df/f</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="getLocalSTD.html" class="code" title="function localSTD = getLocalSTD(intrace , windowSize)">getLocalSTD</a>	intrace: an input trace to be searched for a region of stable std</li><li><a href="traceFlattener.html" class="code" title="function flattenedTrace = traceFlattener(trace , polynomial_order)">traceFlattener</a>	Flatten the trace using polynomial regression</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="batchkmeans_gui2.html" class="code" title="function varargout = batchkmeans_gui2(varargin)">batchkmeans_gui2</a>	BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [clusters , spikes_cluster_idx , baseline_cluster_idx , rasterSpikeTime , dff1 , dff_snr] = kmeans_sd_with_dff_thresh3(trace_features , ROI_tracein , K , dff_thresh)</a>
+0002 <span class="comment">% Core kmeans function</span>
+0003 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0004 <span class="comment">% Author: Kaveh Karbasi</span>
+0005     <span class="comment">% use polynomial regression to flatten the trace and calc df/f</span>
+0006     ROI_trace = <a href="traceFlattener.html" class="code" title="function flattenedTrace = traceFlattener(trace , polynomial_order)">traceFlattener</a>(ROI_tracein , 1);
+0007 <span class="comment">%     baseline = median(ROI_trace);</span>
+0008 
+0009     idx = kmeans(trace_features , K);
+0010     
+0011     <span class="keyword">for</span> i = 1:K
+0012         kdx(i,:) = idx == i;
+0013     <span class="keyword">end</span>
+0014     
+0015     [~ ,spikes_cluster_idx] = min(sum(kdx , 2));
+0016      [~ ,baseline_cluster_idx] = max(sum(kdx , 2));
+0017     
+0018     clusters = cell(1,K);
+0019     <span class="keyword">for</span> i = 1:K
+0020         spiko = ROI_trace;
+0021         spiko(~kdx(i,:)) = NaN;
+0022         clusters{i} = spiko;
+0023     <span class="keyword">end</span>
+0024     baseline = ROI_trace(~isnan(clusters{baseline_cluster_idx}));
+0025     baseline = nanmedian(baseline);
+0026     
+0027     spikes = clusters{spikes_cluster_idx};
+0028     dff1 = (spikes - baseline)/baseline;
+0029     dff = dff1;
+0030     dff(dff &lt; dff_thresh) = NaN;
+0031     rasterSpikeTime = find(~isnan(dff));
+0032         
+0033     baseline_cluster = clusters{baseline_cluster_idx};
+0034     
+0035     baseline_dff = (baseline_cluster - baseline)/baseline;
+0036     baseline_dff_mean = nanmean(baseline_dff);
+0037     
+0038     std_baseline_dff = <a href="getLocalSTD.html" class="code" title="function localSTD = getLocalSTD(intrace , windowSize)">getLocalSTD</a>(baseline_dff , 100);
+0039     
+0040     dff_snr = (dff1) / std_baseline_dff ;
+0041     
+0042 <span class="comment">%     figure;</span>
+0043 <span class="comment">%     plot(dff_snr)</span>
+0044     
+0045     
+0046 <span class="keyword">end</span>
+0047</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

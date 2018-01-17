@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of select_ROI_gui3</title>
+  <meta name="keywords" content="select_ROI_gui3">
+  <meta name="description" content="SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>select_ROI_gui3
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function varargout = select_ROI_gui3(varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig
+      SELECT_ROI_GUI3, by itself, creates a new SELECT_ROI_GUI3 or raises the existing
+      singleton*.
+
+      H = SELECT_ROI_GUI3 returns the handle to a new SELECT_ROI_GUI3 or the handle to
+      the existing singleton*.
+
+      SELECT_ROI_GUI3('CALLBACK',hObject,eventData,handles,...) calls the local
+      function named CALLBACK in SELECT_ROI_GUI3.M with the given input arguments.
+
+      SELECT_ROI_GUI3('Property','Value',...) creates a new SELECT_ROI_GUI3 or raises the
+      existing singleton*.  Starting from the left, property value pairs are
+      applied to the GUI before select_ROI_gui3_OpeningFcn gets called.  An
+      unrecognized property name or invalid value makes property application
+      stop.  All inputs are passed to select_ROI_gui3_OpeningFcn via varargin.
+
+      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one
+      instance to run (singleton)&quot;.
+
+ See also: GUIDE, GUIDATA, GUIHANDLES</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="add_items_to_listbox.html" class="code" title="function add_items_to_listbox(lisbox_handle , items)">add_items_to_listbox</a>	Adds items to a gui list box</li><li><a href="applyMask2TiffStack.html" class="code" title="function masked_tiff_stack = applyMask2TiffStack(tiff_stack , mask)">applyMask2TiffStack</a>	% applyMask2TiffStack(tiff_stack , mask)</li><li><a href="busydlg.html" class="code" title="function h = busydlg(msg,title,varargin)">busydlg</a>	BUSYDLG Display message box without any user control</li><li><a href="currentdir.html" class="code" title="function Outfiles=currentdir(baseDir,searchExpression, exclude)">currentdir</a>	OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</li><li><a href="delete_item_from_listbox.html" class="code" title="function item_selected = delete_item_from_listbox(listbox_handle , item_idx)">delete_item_from_listbox</a>	Delete items from a gui list box</li><li><a href="nnzMeanTrace.html" class="code" title="function meanTrace = nnzMeanTrace(maskedTiffStack , binarybgimg)">nnzMeanTrace</a>	Get the mean trace of an ROI</li><li><a href="select_ROI_gui3.html" class="code" title="function varargout = select_ROI_gui3(varargin)">select_ROI_gui3</a>	SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig</li><li><a href="tiffCellReader.html" class="code" title="function backgroundStack = tiffCellReader(filepath, filenames)">tiffCellReader</a>	Copyright 2016 The Miller Lab, UC Berkeley</li><li><a href="tiffStackReaderFast.html" class="code" title="function tiffStack = tiffStackReaderFast(filename)">tiffStackReaderFast</a>	Copyright 2016 The Miller Lab, UC Berkeley</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="select_ROI_gui3.html" class="code" title="function varargout = select_ROI_gui3(varargin)">select_ROI_gui3</a>	SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig</li></ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function select_ROI_gui3_OpeningFcn(hObject, eventdata, handles, varargin)</a></li><li><a href="#_sub2" class="code">function varargout = select_ROI_gui3_OutputFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub3" class="code">function ROI_list_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub4" class="code">function ROI_list_CreateFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub5" class="code">function snap_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub6" class="code">function figure1_KeyPressFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub7" class="code">function ROI_list_KeyPressFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub8" class="code">function save_ROI_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub9" class="code">function bkg_checkbox_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub10" class="code">function ROI_list_ButtonDownFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub11" class="code">function stack_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub12" class="code">function import_stack_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub13" class="code">function trace_button_Callback(hObject, eventdata, handles)</a></li></ul>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function varargout = select_ROI_gui3(varargin)</a>
+0002 <span class="comment">% SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig</span>
+0003 <span class="comment">%      SELECT_ROI_GUI3, by itself, creates a new SELECT_ROI_GUI3 or raises the existing</span>
+0004 <span class="comment">%      singleton*.</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">%      H = SELECT_ROI_GUI3 returns the handle to a new SELECT_ROI_GUI3 or the handle to</span>
+0007 <span class="comment">%      the existing singleton*.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">%      SELECT_ROI_GUI3('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+0010 <span class="comment">%      function named CALLBACK in SELECT_ROI_GUI3.M with the given input arguments.</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">%      SELECT_ROI_GUI3('Property','Value',...) creates a new SELECT_ROI_GUI3 or raises the</span>
+0013 <span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+0014 <span class="comment">%      applied to the GUI before select_ROI_gui3_OpeningFcn gets called.  An</span>
+0015 <span class="comment">%      unrecognized property name or invalid value makes property application</span>
+0016 <span class="comment">%      stop.  All inputs are passed to select_ROI_gui3_OpeningFcn via varargin.</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one</span>
+0019 <span class="comment">%      instance to run (singleton)&quot;.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+0022 
+0023 <span class="comment">% Edit the above text to modify the response to help select_ROI_gui3</span>
+0024 
+0025 <span class="comment">% Last Modified by GUIDE v2.5 19-Oct-2016 18:22:01</span>
+0026 
+0027 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0028 <span class="comment">% Author: Kaveh Karbasi</span>
+0029 gui_Singleton = 1;
+0030 gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+0031                    <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+0032                    <span class="string">'gui_OpeningFcn'</span>, @<a href="#_sub1" class="code" title="subfunction select_ROI_gui3_OpeningFcn(hObject, eventdata, handles, varargin)">select_ROI_gui3_OpeningFcn</a>, <span class="keyword">...</span>
+0033                    <span class="string">'gui_OutputFcn'</span>,  @<a href="#_sub2" class="code" title="subfunction varargout = select_ROI_gui3_OutputFcn(hObject, eventdata, handles)">select_ROI_gui3_OutputFcn</a>, <span class="keyword">...</span>
+0034                    <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+0035                    <span class="string">'gui_Callback'</span>,   []);
+0036 <span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+0037     gui_State.gui_Callback = str2func(varargin{1});
+0038 <span class="keyword">end</span>
+0039 
+0040 <span class="keyword">if</span> nargout
+0041     [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+0042 <span class="keyword">else</span>
+0043     gui_mainfcn(gui_State, varargin{:});
+0044 <span class="keyword">end</span>
+0045 <span class="comment">% End initialization code - DO NOT EDIT</span>
+0046 
+0047 
+0048 <span class="comment">% --- Executes just before select_ROI_gui3 is made visible.</span>
+0049 <a name="_sub1" href="#_subfunctions" class="code">function select_ROI_gui3_OpeningFcn(hObject, eventdata, handles, varargin)</a>
+0050 <span class="comment">% This function has no output args, see OutputFcn.</span>
+0051 <span class="comment">% hObject    handle to figure</span>
+0052 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0053 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0054 <span class="comment">% varargin   command line arguments to select_ROI_gui3 (see VARARGIN)</span>
+0055 
+0056 <span class="comment">% Choose default command line output for select_ROI_gui3</span>
+0057 <span class="keyword">global</span> bkg_curr_val;
+0058 bkg_curr_val = 0;
+0059 handles.output = hObject;
+0060 handles.colors = hsv(25);
+0061 <span class="comment">% Update handles structure</span>
+0062 guidata(hObject, handles);
+0063 
+0064 <span class="comment">% UIWAIT makes select_ROI_gui3 wait for user response (see UIRESUME)</span>
+0065 <span class="comment">% uiwait(handles.figure1);</span>
+0066 
+0067 
+0068 <span class="comment">% --- Outputs from this function are returned to the command line.</span>
+0069 <a name="_sub2" href="#_subfunctions" class="code">function varargout = select_ROI_gui3_OutputFcn(hObject, eventdata, handles) </a>
+0070 <span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+0071 <span class="comment">% hObject    handle to figure</span>
+0072 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0073 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0074 
+0075 <span class="comment">% Get default command line output from handles structure</span>
+0076 varargout{1} = handles.output;
+0077 
+0078 
+0079 <span class="comment">% --- Executes on selection change in ROI_list.</span>
+0080 <a name="_sub3" href="#_subfunctions" class="code">function ROI_list_Callback(hObject, eventdata, handles)</a>
+0081 <span class="comment">% hObject    handle to ROI_list (see GCBO)</span>
+0082 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0083 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0084 
+0085 <span class="comment">% Hints: contents = cellstr(get(hObject,'String')) returns ROI_list contents as cell array</span>
+0086 <span class="comment">%        contents{get(hObject,'Value')} returns selected item from ROI_list</span>
+0087 
+0088 
+0089 <span class="comment">% --- Executes during object creation, after setting all properties.</span>
+0090 <a name="_sub4" href="#_subfunctions" class="code">function ROI_list_CreateFcn(hObject, eventdata, handles)</a>
+0091 <span class="comment">% hObject    handle to ROI_list (see GCBO)</span>
+0092 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0093 <span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+0094 
+0095 <span class="comment">% Hint: listbox controls usually have a white background on Windows.</span>
+0096 <span class="comment">%       See ISPC and COMPUTER.</span>
+0097 <span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+0098     set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+0099 <span class="keyword">end</span>
+0100 
+0101 
+0102 <span class="comment">% --- Executes on button press in snap_button.</span>
+0103 <a name="_sub5" href="#_subfunctions" class="code">function snap_button_Callback(hObject, eventdata, handles)</a>
+0104 <span class="comment">% hObject    handle to snap_button (see GCBO)</span>
+0105 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0106 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0107 <span class="keyword">global</span> mapH parentmapH;
+0108 <span class="keyword">global</span> ROI_counter text_handles ROI_handles;
+0109 <span class="keyword">global</span> SnapPathName SnapFileName;
+0110 <span class="keyword">global</span> bkg_curr_val;
+0111 bkg_curr_val = 0;
+0112 <span class="comment">%set(handles.save_ROI_button , 'String' , 'Save ROIs and choose background')</span>
+0113 <span class="comment">%set(handles.bkg_checkbox , 'Value' , 0);</span>
+0114 
+0115 ROI_handles = {};
+0116 text_handles = {};
+0117 ROI_counter  = 1;
+0118 
+0119 set(handles.ROI_list , <span class="string">'String'</span> , <span class="string">''</span>);
+0120 
+0121 handles.colors = handles.colors(randperm(size(handles.colors,1)),:);
+0122 <span class="comment">% baseDir = 'E:\MillerLabData\Su16Data\ForSTTC\testMultiFolder\Slide 1\';</span>
+0123 baseDir = <span class="string">''</span>;
+0124 disp(<span class="string">'SELECT A SNAP FILE...'</span>);
+0125 [SnapFileName,SnapPathName] = uigetfile([baseDir <span class="string">'*.tiff'</span>],<span class="string">'Select a .tif SNAP file'</span>);
+0126 <span class="keyword">if</span>(SnapFileName == 0)
+0127     <span class="keyword">return</span>
+0128 <span class="keyword">end</span>
+0129 
+0130 <span class="comment">%if a file was selected</span>
+0131 handles.curr_snap_filename = SnapFileName;
+0132 handles.curr_snap_path = SnapPathName;
+0133 set(handles.snap_fn_text , <span class="string">'String'</span> , [SnapPathName,SnapFileName]);
+0134 snap = imread([SnapPathName,SnapFileName]);
+0135 set(handles.image_axes , <span class="string">'Visible'</span> , <span class="string">'on'</span>);
+0136 axes(handles.image_axes)
+0137 mapH = imshow(imadjust(snap));
+0138 
+0139 
+0140 
+0141 parentmapH = get(mapH , <span class="string">'parent'</span>);
+0142 set(handles.info_text , <span class="string">'String'</span> , <span class="string">'Press ''C'' to continue drawing'</span>)
+0143 guidata(hObject, handles);
+0144 
+0145 <span class="comment">% --- Executes on key press with focus on figure1 and none of its controls.</span>
+0146 <a name="_sub6" href="#_subfunctions" class="code">function figure1_KeyPressFcn(hObject, eventdata, handles)</a>
+0147 <span class="comment">% hObject    handle to figure1 (see GCBO)</span>
+0148 <span class="comment">% eventdata  structure with the following fields (see FIGURE)</span>
+0149 <span class="comment">%    Key: name of the key that was pressed, in lower case</span>
+0150 <span class="comment">%    Character: character interpretation of the key(s) that was pressed</span>
+0151 <span class="comment">%    Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed</span>
+0152 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0153 <span class="keyword">global</span> ROI_counter parentmapH ROI_handles text_handles ROI_masks;
+0154 <span class="keyword">if</span> eventdata.Key == <span class="string">'c'</span>
+0155     set(handles.info_text , <span class="string">'String'</span> , <span class="string">'Draw an ROI'</span>)
+0156     h=imfreehand(parentmapH);
+0157     ROI_handles{ROI_counter} = h;
+0158     ROI_masks{ROI_counter} = h.createMask();
+0159     pos = h.getPosition();
+0160     textX = 12+(max(pos(: , 1)) + min(pos(: , 1)))/2;
+0161     textY = (max(pos(: , 2)) + min(pos(: , 2)))/2;
+0162     
+0163     text_handles{ROI_counter} = text(<span class="string">'position'</span>,[textX textY],<span class="string">'fontsize'</span>,20 , <span class="string">'Parent'</span> , <span class="keyword">...</span>
+0164                 parentmapH , <span class="string">'Color'</span> , handles.colors(ROI_counter , :) ,<span class="string">'string'</span>,num2str(ROI_counter));
+0165     <a href="add_items_to_listbox.html" class="code" title="function add_items_to_listbox(lisbox_handle , items)">add_items_to_listbox</a>(handles.ROI_list , num2str(ROI_counter));
+0166     
+0167     ROI_counter = ROI_counter + 1;
+0168 <span class="keyword">end</span>
+0169 
+0170 <span class="keyword">if</span> eventdata.Key == <span class="string">'d'</span>
+0171     
+0172     index_selected = get(handles.ROI_list,<span class="string">'Value'</span>);
+0173     <a href="delete_item_from_listbox.html" class="code" title="function item_selected = delete_item_from_listbox(listbox_handle , item_idx)">delete_item_from_listbox</a>(handles.ROI_list , index_selected);
+0174     <span class="keyword">if</span> numel(ROI_handles) &gt; 0
+0175         ROI_handles{index_selected}.delete()
+0176         t = text_handles{index_selected};
+0177         text_handles(index_selected) = [];
+0178         delete(t);
+0179         ROI_handles(index_selected) = [];
+0180         ROI_counter = ROI_counter - 1;
+0181         
+0182         <span class="keyword">for</span> tt = index_selected : numel(text_handles)
+0183 
+0184             prevtxt = get(text_handles{tt} , <span class="string">'String'</span>);
+0185             newtxt = num2str(str2double(prevtxt) - 1);
+0186             set(text_handles{tt} , <span class="string">'String'</span> , newtxt);
+0187         <span class="keyword">end</span>
+0188         set(handles.ROI_list , <span class="string">'String'</span> , num2str([1:ROI_counter-1]'))
+0189     <span class="keyword">end</span>
+0190 <span class="keyword">end</span>
+0191 guidata(hObject, handles);
+0192 
+0193 
+0194 <span class="comment">% --- Executes on key press with focus on ROI_list and none of its controls.</span>
+0195 <a name="_sub7" href="#_subfunctions" class="code">function ROI_list_KeyPressFcn(hObject, eventdata, handles)</a>
+0196 <span class="comment">% hObject    handle to ROI_list (see GCBO)</span>
+0197 <span class="comment">% eventdata  structure with the following fields (see UICONTROL)</span>
+0198 <span class="comment">%    Key: name of the key that was pressed, in lower case</span>
+0199 <span class="comment">%    Character: character interpretation of the key(s) that was pressed</span>
+0200 <span class="comment">%    Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed</span>
+0201 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0202 <span class="keyword">global</span> ROI_counter parentmapH ROI_handles text_handles;
+0203 
+0204 <span class="keyword">if</span> eventdata.Key == <span class="string">'c'</span>
+0205     set(handles.info_text , <span class="string">'String'</span> , <span class="string">'Draw an ROI'</span>)
+0206     h=imfreehand(parentmapH);
+0207     ROI_handles{ROI_counter} = h;
+0208 <span class="comment">%     ROI_masks{ROI_counter} = h.createMask();</span>
+0209     pos = h.getPosition();
+0210     textX = 12+(max(pos(: , 1)) + min(pos(: , 1)))/2;
+0211     textY = (max(pos(: , 2)) + min(pos(: , 2)))/2;  
+0212     text_handles{ROI_counter} = text(<span class="string">'position'</span>,[textX textY],<span class="string">'fontsize'</span>,20 , <span class="string">'Parent'</span> , <span class="keyword">...</span>
+0213                 parentmapH , <span class="string">'Color'</span> , handles.colors(ROI_counter , :) ,<span class="string">'string'</span>,num2str(ROI_counter));
+0214     <a href="add_items_to_listbox.html" class="code" title="function add_items_to_listbox(lisbox_handle , items)">add_items_to_listbox</a>(handles.ROI_list , num2str(ROI_counter));
+0215     ROI_counter = ROI_counter + 1;
+0216 <span class="keyword">end</span>
+0217 
+0218 <span class="keyword">if</span> eventdata.Key == <span class="string">'d'</span>
+0219     index_selected = get(handles.ROI_list,<span class="string">'Value'</span>);
+0220     <a href="delete_item_from_listbox.html" class="code" title="function item_selected = delete_item_from_listbox(listbox_handle , item_idx)">delete_item_from_listbox</a>(handles.ROI_list , index_selected);
+0221     <span class="keyword">if</span> numel(ROI_handles) &gt; 0
+0222         ROI_handles{index_selected}.delete()
+0223         t = text_handles{index_selected};
+0224         text_handles(index_selected) = [];
+0225         delete(t);
+0226         ROI_handles(index_selected) = [];
+0227         ROI_counter = ROI_counter - 1;
+0228         
+0229         <span class="keyword">for</span> tt = index_selected : numel(text_handles)
+0230 
+0231             prevtxt = get(text_handles{tt} , <span class="string">'String'</span>);
+0232             newtxt = num2str(str2double(prevtxt) - 1);
+0233             set(text_handles{tt} , <span class="string">'String'</span> , newtxt);
+0234         <span class="keyword">end</span>
+0235         set(handles.ROI_list , <span class="string">'String'</span> , num2str([1:ROI_counter-1]'))
+0236     <span class="keyword">end</span>
+0237 <span class="keyword">end</span>
+0238 guidata(hObject, handles);
+0239 
+0240 
+0241 <span class="comment">% --- Executes on button press in save_ROI_button.</span>
+0242 <a name="_sub8" href="#_subfunctions" class="code">function save_ROI_button_Callback(hObject, eventdata, handles)</a>
+0243 warning (<span class="string">'off'</span>,<span class="string">'all'</span>);
+0244 <span class="comment">% hObject    handle to save_ROI_button (see GCBO)</span>
+0245 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0246 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0247 <span class="keyword">global</span> ROI_handles ROI_counter SnapPathName StackFileName StackPathName bkg_curr_val;
+0248 <span class="keyword">global</span> tiffStack text_handles SnapFileName;
+0249 <span class="keyword">if</span> ROI_counter == 1
+0250     disp(<span class="string">'Please select at least one ROI.'</span>)
+0251     <span class="keyword">return</span>
+0252 <span class="keyword">end</span>
+0253 ROI_masks = {};
+0254 textPos = {};
+0255 <span class="keyword">for</span> rr = 1:numel(ROI_handles)
+0256     ROI_masks{rr} = ROI_handles{rr}.createMask();
+0257     textPos{rr} = get(text_handles{rr} , <span class="string">'position'</span>);
+0258 <span class="keyword">end</span>
+0259 
+0260 [file,path,FilterIndex] = uiputfile(fullfile(SnapPathName,<span class="string">'std.mat'</span>),<span class="string">'Save data'</span>);
+0261 <span class="keyword">if</span> file == 0
+0262     <span class="keyword">return</span>
+0263 <span class="keyword">end</span>
+0264 <span class="keyword">if</span> strcmp(file(1:3),<span class="string">'std'</span>) == 0
+0265     file = strcat(<span class="string">'std-'</span>,file);
+0266 <span class="keyword">end</span>
+0267 disp(sprintf(<span class="string">'Saving to %s.'</span>, [path file]))
+0268 <span class="keyword">if</span> FilterIndex~=0
+0269     disp(<span class="string">'Saving ROIs and tiff stack...'</span>)
+0270     
+0271     wh = <a href="busydlg.html" class="code" title="function h = busydlg(msg,title,varargin)">busydlg</a>(<span class="string">'Saving Data... Please Wait...'</span>);
+0272     stackpath = [StackPathName StackFileName];
+0273     snappath = [SnapPathName SnapFileName];
+0274     
+0275     
+0276     save([path file] , <span class="string">'ROI_masks'</span> , <span class="string">'stackpath'</span> , <span class="string">'text_handles'</span> ,<span class="string">'snappath'</span> , <span class="string">'textPos'</span> )
+0277     delete(wh);
+0278 <span class="comment">%     disp('Saving ROIs and tiff stack...')</span>
+0279     set(handles.info_text , <span class="string">'String'</span> , <span class="string">'Data saved! Press any key to continue...'</span>);
+0280     <span class="keyword">if</span> bkg_curr_val == 0
+0281         bkg_image_stack = <a href="tiffCellReader.html" class="code" title="function backgroundStack = tiffCellReader(filepath, filenames)">tiffCellReader</a>(StackPathName, StackFileName);
+0282         bkg_cell_stack = {numel(bkg_image_stack)};
+0283         axes(handles.image_axes);
+0284         <span class="keyword">for</span> index=1:numel(bkg_image_stack)
+0285             set(handles.info_text , <span class="string">'String'</span> , sprintf(<span class="string">'Draw a region of background for movie #%d.'</span>, index))
+0286     <span class="comment">%         for ii = 1:numel(ROI_handles)</span>
+0287     <span class="comment">%             ROI_handles{ii}.delete()</span>
+0288     <span class="comment">%             t = text_handles{ii};</span>
+0289     <span class="comment">%             delete(t);</span>
+0290     <span class="comment">%</span>
+0291     <span class="comment">%         end</span>
+0292     <span class="comment">%         text_handles = {};</span>
+0293     <span class="comment">%         ROI_handles = {};</span>
+0294 
+0295             bkgmapH = imshow(imadjust(uint16(bkg_image_stack{index})));
+0296             parentbkgmapH = get(bkgmapH , <span class="string">'parent'</span>);
+0297             h=imfreehand(parentbkgmapH);
+0298             set(handles.info_text , <span class="string">'String'</span> , <span class="string">'Saving the background...'</span>)
+0299             bkg_cell_stack{index} = h.createMask();
+0300         <span class="keyword">end</span>
+0301             disp(<span class="string">'Saving background mask...'</span>)
+0302             save([path file] , <span class="string">'bkg_cell_stack'</span> , <span class="string">'-append'</span>)
+0303         set(handles.info_text , <span class="string">'String'</span> , <span class="string">'Backgrounds saved! Press any key to continue...'</span>)
+0304     <span class="keyword">end</span>
+0305 <span class="keyword">end</span>
+0306 warning (<span class="string">'on'</span>,<span class="string">'all'</span>);
+0307 guidata(hObject, handles);
+0308 
+0309 waitforbuttonpress;
+0310 close(gcbf)
+0311 <a href="select_ROI_gui3.html" class="code" title="function varargout = select_ROI_gui3(varargin)">select_ROI_gui3</a>
+0312 <span class="comment">% --- Executes on button press in bkg_checkbox.</span>
+0313 <a name="_sub9" href="#_subfunctions" class="code">function bkg_checkbox_Callback(hObject, eventdata, handles)</a>
+0314 <span class="comment">% hObject    handle to bkg_checkbox (see GCBO)</span>
+0315 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0316 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0317 <span class="keyword">global</span> bkg_curr_val;
+0318 
+0319 <span class="comment">% Hint: get(hObject,'Value') returns toggle state of bkg_checkbox</span>
+0320 newval =  get(hObject,<span class="string">'Value'</span>);
+0321 
+0322 <span class="keyword">if</span> bkg_curr_val == 0 &amp;&amp; newval == 1
+0323     bkg_curr_val = 1;
+0324     set(handles.save_ROI_button , <span class="string">'String'</span> , <span class="string">'Save ROIs'</span>)
+0325 <span class="keyword">end</span>
+0326 <span class="keyword">if</span> bkg_curr_val == 1 &amp;&amp; newval == 0
+0327     bkg_curr_val = 0;
+0328     set(handles.save_ROI_button , <span class="string">'String'</span> , <span class="string">'Save ROIs and choose background'</span>)
+0329 <span class="keyword">end</span>
+0330 guidata(hObject, handles);
+0331 
+0332 <span class="comment">% --- If Enable == 'on', executes on mouse press in 5 pixel border.</span>
+0333 <span class="comment">% --- Otherwise, executes on mouse press in 5 pixel border or over ROI_list.</span>
+0334 <a name="_sub10" href="#_subfunctions" class="code">function ROI_list_ButtonDownFcn(hObject, eventdata, handles)</a>
+0335 <span class="comment">% hObject    handle to ROI_list (see GCBO)</span>
+0336 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0337 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0338 
+0339 guidata(hObject, handles);
+0340 
+0341 
+0342 <span class="comment">% --- Executes on button press in stack_button.</span>
+0343 <a name="_sub11" href="#_subfunctions" class="code">function stack_button_Callback(hObject, eventdata, handles)</a>
+0344 <span class="comment">% hObject    handle to stack_button (see GCBO)</span>
+0345 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0346 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0347 warning(<span class="string">'off'</span> , <span class="string">'all'</span>);
+0348 <span class="keyword">global</span> StackFileName StackPathName SnapPathName;
+0349 <span class="keyword">global</span> tiffStack;
+0350 
+0351 disp(<span class="string">'SELECT A STACK FILE...'</span>);
+0352 [StackFileName,StackPathName] = uigetfile([SnapPathName <span class="string">'*.tiff'</span>],<span class="string">'Select a .tif STACK file'</span>);
+0353 <span class="keyword">if</span>(StackFileName == 0)
+0354     <span class="keyword">return</span>
+0355 <span class="keyword">end</span>
+0356 StackFileName = {StackFileName}; <span class="comment">% cast to cell array to maintain compatibility</span>
+0357 set(handles.stack_fn_text , <span class="string">'String'</span> , [StackPathName StackFileName]);
+0358 warning(<span class="string">'on'</span> , <span class="string">'all'</span>);
+0359 
+0360 <span class="comment">% --- Executes on button press in import_stack.</span>
+0361 <a name="_sub12" href="#_subfunctions" class="code">function import_stack_Callback(hObject, eventdata, handles)</a>
+0362 <span class="comment">% hObject    handle to import_stack (see GCBO)</span>
+0363 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0364 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0365 <span class="keyword">global</span> SnapFileName SnapPathName StackFileName StackPathName;
+0366 <span class="keyword">global</span> tiffStack;
+0367 <span class="keyword">if</span>(length(SnapPathName) &gt; 0)
+0368     <span class="comment">% match all .tiff files except the snap</span>
+0369     StackFileName = <a href="currentdir.html" class="code" title="function Outfiles=currentdir(baseDir,searchExpression, exclude)">currentdir</a>(SnapPathName, <span class="string">'\.tiff'</span>, SnapFileName);
+0370     disp(<span class="string">'Files Found:'</span>)
+0371     disp(StackFileName)
+0372     StackPathName = SnapPathName;
+0373     set(handles.stack_fn_text , <span class="string">'String'</span> , StackFileName);
+0374 <span class="keyword">else</span>
+0375     disp(<span class="string">'Please select a snap first.'</span>)
+0376     <span class="keyword">return</span>
+0377 <span class="keyword">end</span>
+0378 <span class="keyword">if</span> numel(StackFileName) == 0
+0379     disp(<span class="string">'No matching .tiff files found.'</span>)
+0380 <span class="keyword">end</span>
+0381 
+0382 
+0383 
+0384 <span class="comment">% --- Executes on button press in trace_button.</span>
+0385 <a name="_sub13" href="#_subfunctions" class="code">function trace_button_Callback(hObject, eventdata, handles)</a>
+0386 <span class="comment">% hObject    handle to trace_button (see GCBO)</span>
+0387 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0388 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0389  <span class="keyword">global</span> ROI_handles StackPathName StackFileName;
+0390  tiffStack = <a href="tiffStackReaderFast.html" class="code" title="function tiffStack = tiffStackReaderFast(filename)">tiffStackReaderFast</a>([StackPathName StackFileName{1}]);
+0391  index_selected = get(handles.ROI_list,<span class="string">'Value'</span>);
+0392  ROI_mask = ROI_handles{index_selected}.createMask();
+0393  trace = <a href="applyMask2TiffStack.html" class="code" title="function masked_tiff_stack = applyMask2TiffStack(tiff_stack , mask)">applyMask2TiffStack</a>(tiffStack , ROI_mask);
+0394  meanTrace = <a href="nnzMeanTrace.html" class="code" title="function meanTrace = nnzMeanTrace(maskedTiffStack , binarybgimg)">nnzMeanTrace</a>(trace , ROI_mask);
+0395  clearvars trace;
+0396 
+0397  
+0398 <span class="comment">%  subplot(2,1,1)</span>
+0399 figure(<span class="string">'Position'</span>, [100, 100, 800, 200]);
+0400 plot(meanTrace)
+0401 title([<span class="string">'ROI '</span> num2str(index_selected)  <span class="string">' mean trace'</span>])</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

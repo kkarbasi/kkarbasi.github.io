@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of save_ifreq_xlsx</title>
+  <meta name="keywords" content="save_ifreq_xlsx">
+  <meta name="description" content="ifreqs: a cell array containing a set of ROIs' instantaneous frequencies">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>save_ifreq_xlsx
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>ifreqs: a cell array containing a set of ROIs' instantaneous frequencies</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function alliFreqs = save_ifreq_xlsx(ifreqs , freqs , xlsxFileName ,sheetn ,sourceFileName) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> ifreqs: a cell array containing a set of ROIs' instantaneous frequencies
+ freqs: a cell array containgin a set of ROIs' frequencies
+ xlsxFileName: Excel filename to which data is saved (format should be
+ [filename].xlsx)
+ sheetn: a character vector containing the worksheet name or a positive 
+ integer indicating the worksheet index
+ Note: ifreqs and freqs should have similar sizes
+ Copyright 2016 The Miller Lab, UC Berkeley
+ Author: Kaveh Karbasi</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="freqExport_gui.html" class="code" title="function varargout = freqExport_gui(varargin)">freqExport_gui</a>	FREQEXPORT_GUI MATLAB code for freqExport_gui.fig</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function alliFreqs = save_ifreq_xlsx(ifreqs , freqs , xlsxFileName ,sheetn ,sourceFileName)</a>
+0002 <span class="comment">% ifreqs: a cell array containing a set of ROIs' instantaneous frequencies</span>
+0003 <span class="comment">% freqs: a cell array containgin a set of ROIs' frequencies</span>
+0004 <span class="comment">% xlsxFileName: Excel filename to which data is saved (format should be</span>
+0005 <span class="comment">% [filename].xlsx)</span>
+0006 <span class="comment">% sheetn: a character vector containing the worksheet name or a positive</span>
+0007 <span class="comment">% integer indicating the worksheet index</span>
+0008 <span class="comment">% Note: ifreqs and freqs should have similar sizes</span>
+0009 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0010 <span class="comment">% Author: Kaveh Karbasi</span>
+0011 
+0012 maxFreq = max(cell2mat(freqs)) - 1;
+0013 numROIs = numel(ifreqs);
+0014 outMat = zeros(maxFreq , numROIs);
+0015 colTitles = cell(1,numROIs);
+0016 alliFreqs = [];
+0017 <span class="keyword">for</span> ff = 1:numel(ifreqs)
+0018        colTitles{ff} = [<span class="string">'ROI '</span> num2str(ff)];
+0019        freqCol = ifreqs{ff};    
+0020        freqCol = freqCol';
+0021        alliFreqs = [alliFreqs ; freqCol];
+0022        <span class="keyword">if</span> numel(freqCol)&gt;0
+0023         outMat((1:numel(freqCol)) , ff) = freqCol;
+0024        <span class="keyword">end</span>
+0025 <span class="keyword">end</span>
+0026 outMat(outMat == 0) = nan;
+0027 
+0028 writetable(table({sourceFileName}) ,xlsxFileName ,<span class="string">'Sheet'</span>, sheetn, <span class="string">'Range'</span> , <span class="string">'A1'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0029 
+0030 writetable(table({<span class="string">'Freqs'</span>}) ,xlsxFileName,<span class="string">'Sheet'</span>, sheetn,  <span class="string">'Range'</span> , [<span class="string">'A'</span> num2str(maxFreq + 6)] , <span class="string">'WriteVariableNames'</span> , false);
+0031 
+0032 <span class="keyword">if</span> ~isempty(cell2mat(freqs))
+0033     writetable(table(cell2mat(freqs)') ,xlsxFileName,<span class="string">'Sheet'</span>, sheetn, <span class="string">'Range'</span> , [<span class="string">'B'</span> num2str(maxFreq + 7)] , <span class="string">'WriteVariableNames'</span> , false);
+0034 <span class="keyword">end</span>
+0035 
+0036 writetable(table({<span class="string">'Inst. Freqs (all ROIs)'</span>}) ,xlsxFileName,<span class="string">'Sheet'</span>, sheetn,  <span class="string">'Range'</span> , [<span class="string">'E'</span> num2str(maxFreq + 6)] , <span class="string">'WriteVariableNames'</span> , false);
+0037 
+0038 <span class="keyword">if</span> ~isempty(alliFreqs)
+0039     writetable(table(alliFreqs) ,xlsxFileName,<span class="string">'Sheet'</span>, sheetn, <span class="string">'Range'</span> , [<span class="string">'E'</span> num2str(maxFreq + 7)] , <span class="string">'WriteVariableNames'</span> , false);
+0040 <span class="keyword">end</span>
+0041 
+0042 writetable(table({<span class="string">'Inst. Freqs'</span>}) ,xlsxFileName ,<span class="string">'Sheet'</span>, sheetn, <span class="string">'Range'</span> , <span class="string">'A3'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0043 
+0044 <span class="keyword">if</span> ~isempty(colTitles)
+0045     writetable(table(colTitles) ,xlsxFileName, <span class="string">'Sheet'</span>, sheetn, <span class="string">'Range'</span> , <span class="string">'A4'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0046 <span class="keyword">end</span>
+0047 <span class="keyword">if</span> ~isempty(outMat)
+0048     writetable(table(outMat) , xlsxFileName ,<span class="string">'Sheet'</span>, sheetn,  <span class="string">'Range'</span> , <span class="string">'A5'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0049 <span class="keyword">end</span>
+0050</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

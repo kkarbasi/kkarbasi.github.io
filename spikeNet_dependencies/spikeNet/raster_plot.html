@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of raster_plot</title>
+  <meta name="keywords" content="raster_plot">
+  <meta name="description" content="rasterSpikeTime: a cell array. each cell contains the spike times of one ROI/neuron">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>raster_plot
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>rasterSpikeTime: a cell array. each cell contains the spike times of one ROI/neuron</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function raster_plot( rasterSpikeTimes , vidLength , plot_title) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> rasterSpikeTime: a cell array. each cell contains the spike times of one ROI/neuron
+ vidLength: length of the experiment video
+ plot_title: raster plot title
+ Copyright 2016 The Miller Lab, UC Berkeley
+ Author: Kaveh Karbasi</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="trace_browser.html" class="code" title="function varargout = trace_browser(varargin)">trace_browser</a>	TRACE_BROWSER MATLAB code for trace_browser.fig</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function raster_plot( rasterSpikeTimes , vidLength , plot_title)</a>
+0002 <span class="comment">% rasterSpikeTime: a cell array. each cell contains the spike times of one ROI/neuron</span>
+0003 <span class="comment">% vidLength: length of the experiment video</span>
+0004 <span class="comment">% plot_title: raster plot title</span>
+0005 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0006 <span class="comment">% Author: Kaveh Karbasi</span>
+0007     figure;
+0008    
+0009     ntrials = numel(rasterSpikeTimes); <span class="comment">% number of trials</span>
+0010     <span class="keyword">for</span> jj = 1:ntrials
+0011         t       = rasterSpikeTimes{jj}; <span class="comment">% Spike timings in the jjth trial</span>
+0012         nspikes   = numel(t); <span class="comment">% number of elemebts / spikes</span>
+0013         <span class="keyword">for</span> ii = 1:nspikes <span class="comment">% for every spike</span>
+0014           line([t(ii) t(ii)],[jj-0.5 jj+0.5],<span class="string">'Color'</span>,<span class="string">'k'</span>); 
+0015           <span class="comment">% draw a black vertical line of length 1 at time t (x) and at trial jj (y)</span>
+0016         <span class="keyword">end</span>
+0017     <span class="keyword">end</span>
+0018     line([vidLength vidLength],[jj-0.5 jj+0.5],<span class="string">'Color'</span>,<span class="string">'w'</span>);  
+0019     xlabel(<span class="string">'Time'</span>);
+0020     ylabel(<span class="string">'ROI number'</span>);
+0021     set(gca,<span class="string">'ytick'</span>, 1:ntrials); 
+0022     title(plot_title)
+0023 
+0024 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of freqExport_gui</title>
+  <meta name="keywords" content="freqExport_gui">
+  <meta name="description" content="FREQEXPORT_GUI MATLAB code for freqExport_gui.fig">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>freqExport_gui
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>FREQEXPORT_GUI MATLAB code for freqExport_gui.fig</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function varargout = freqExport_gui(varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> FREQEXPORT_GUI MATLAB code for freqExport_gui.fig
+      FREQEXPORT_GUI, by itself, creates a new FREQEXPORT_GUI or raises the existing
+      singleton*.
+
+      H = FREQEXPORT_GUI returns the handle to a new FREQEXPORT_GUI or the handle to
+      the existing singleton*.
+
+      FREQEXPORT_GUI('CALLBACK',hObject,eventData,handles,...) calls the local
+      function named CALLBACK in FREQEXPORT_GUI.M with the given input arguments.
+
+      FREQEXPORT_GUI('Property','Value',...) creates a new FREQEXPORT_GUI or raises the
+      existing singleton*.  Starting from the left, property value pairs are
+      applied to the GUI before freqExport_gui_OpeningFcn gets called.  An
+      unrecognized property name or invalid value makes property application
+      stop.  All inputs are passed to freqExport_gui_OpeningFcn via varargin.
+
+      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one
+      instance to run (singleton)&quot;.
+
+ See also: GUIDE, GUIDATA, GUIHANDLES</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="delete_item_from_listbox.html" class="code" title="function item_selected = delete_item_from_listbox(listbox_handle , item_idx)">delete_item_from_listbox</a>	Delete items from a gui list box</li><li><a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>	OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</li><li><a href="save_ifreq_xlsx.html" class="code" title="function alliFreqs = save_ifreq_xlsx(ifreqs , freqs , xlsxFileName ,sheetn ,sourceFileName)">save_ifreq_xlsx</a>	ifreqs: a cell array containing a set of ROIs' instantaneous frequencies</li><li><a href="uipickfiles.html" class="code" title="function out = uipickfiles(varargin)">uipickfiles</a>	uipickfiles: GUI program to select files and/or folders.</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function freqExport_gui_OpeningFcn(hObject, eventdata, handles, varargin)</a></li><li><a href="#_sub2" class="code">function varargout = freqExport_gui_OutputFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub3" class="code">function export_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub4" class="code">function source_listbox_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub5" class="code">function source_listbox_CreateFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub6" class="code">function destination_listbox_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub7" class="code">function destination_listbox_CreateFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub8" class="code">function add_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub9" class="code">function remove_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub10" class="code">function select_files_button_Callback(hObject, eventdata, handles)</a></li></ul>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function varargout = freqExport_gui(varargin)</a>
+0002 <span class="comment">% FREQEXPORT_GUI MATLAB code for freqExport_gui.fig</span>
+0003 <span class="comment">%      FREQEXPORT_GUI, by itself, creates a new FREQEXPORT_GUI or raises the existing</span>
+0004 <span class="comment">%      singleton*.</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">%      H = FREQEXPORT_GUI returns the handle to a new FREQEXPORT_GUI or the handle to</span>
+0007 <span class="comment">%      the existing singleton*.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">%      FREQEXPORT_GUI('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+0010 <span class="comment">%      function named CALLBACK in FREQEXPORT_GUI.M with the given input arguments.</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">%      FREQEXPORT_GUI('Property','Value',...) creates a new FREQEXPORT_GUI or raises the</span>
+0013 <span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+0014 <span class="comment">%      applied to the GUI before freqExport_gui_OpeningFcn gets called.  An</span>
+0015 <span class="comment">%      unrecognized property name or invalid value makes property application</span>
+0016 <span class="comment">%      stop.  All inputs are passed to freqExport_gui_OpeningFcn via varargin.</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one</span>
+0019 <span class="comment">%      instance to run (singleton)&quot;.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+0022 
+0023 <span class="comment">% Edit the above text to modify the response to help freqExport_gui</span>
+0024 
+0025 <span class="comment">% Last Modified by GUIDE v2.5 07-Oct-2016 15:12:45</span>
+0026 
+0027 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0028 <span class="comment">% Author: Kaveh Karbasis</span>
+0029 gui_Singleton = 1;
+0030 gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+0031                    <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+0032                    <span class="string">'gui_OpeningFcn'</span>, @<a href="#_sub1" class="code" title="subfunction freqExport_gui_OpeningFcn(hObject, eventdata, handles, varargin)">freqExport_gui_OpeningFcn</a>, <span class="keyword">...</span>
+0033                    <span class="string">'gui_OutputFcn'</span>,  @<a href="#_sub2" class="code" title="subfunction varargout = freqExport_gui_OutputFcn(hObject, eventdata, handles)">freqExport_gui_OutputFcn</a>, <span class="keyword">...</span>
+0034                    <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+0035                    <span class="string">'gui_Callback'</span>,   []);
+0036 <span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+0037     gui_State.gui_Callback = str2func(varargin{1});
+0038 <span class="keyword">end</span>
+0039 
+0040 <span class="keyword">if</span> nargout
+0041     [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+0042 <span class="keyword">else</span>
+0043     gui_mainfcn(gui_State, varargin{:});
+0044 <span class="keyword">end</span>
+0045 <span class="comment">% End initialization code - DO NOT EDIT</span>
+0046 
+0047 
+0048 <span class="comment">% --- Executes just before freqExport_gui is made visible.</span>
+0049 <a name="_sub1" href="#_subfunctions" class="code">function freqExport_gui_OpeningFcn(hObject, eventdata, handles, varargin)</a>
+0050 <span class="comment">% This function has no output args, see OutputFcn.</span>
+0051 <span class="comment">% hObject    handle to figure</span>
+0052 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0053 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0054 <span class="comment">% varargin   command line arguments to freqExport_gui (see VARARGIN)</span>
+0055 
+0056 <span class="comment">% Choose default command line output for freqExport_gui</span>
+0057 handles.output = hObject;
+0058 
+0059 <span class="comment">% Update handles structure</span>
+0060 guidata(hObject, handles);
+0061 
+0062 <span class="comment">% UIWAIT makes freqExport_gui wait for user response (see UIRESUME)</span>
+0063 <span class="comment">% uiwait(handles.figure1);</span>
+0064 
+0065 
+0066 <span class="comment">% --- Outputs from this function are returned to the command line.</span>
+0067 <a name="_sub2" href="#_subfunctions" class="code">function varargout = freqExport_gui_OutputFcn(hObject, eventdata, handles) </a>
+0068 <span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+0069 <span class="comment">% hObject    handle to figure</span>
+0070 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0071 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0072 
+0073 <span class="comment">% Get default command line output from handles structure</span>
+0074 varargout{1} = handles.output;
+0075 
+0076 
+0077 <span class="comment">% --- Executes on button press in export_button.</span>
+0078 <a name="_sub3" href="#_subfunctions" class="code">function export_button_Callback(hObject, eventdata, handles)</a>
+0079 <span class="comment">% hObject    handle to export_button (see GCBO)</span>
+0080 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0081 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0082 
+0083 [xlsxFilename, xlsxPath] = uiputfile({<span class="string">'*.xlsx'</span> ; <span class="string">'*.xls'</span>} , <span class="string">'Save as'</span> , <span class="string">'export.xlsx'</span>);
+0084 
+0085 exportFiles = cellstr(get(handles.destination_listbox,<span class="string">'String'</span>));
+0086 iFreqs_all_files = [];
+0087 freqs_all_files = [];
+0088 <span class="keyword">for</span> ff = 1:numel(exportFiles)
+0089     load(exportFiles{ff} , <span class="string">'freqs'</span> , <span class="string">'ifreqs'</span>);
+0090     ifreqs_all = <a href="save_ifreq_xlsx.html" class="code" title="function alliFreqs = save_ifreq_xlsx(ifreqs , freqs , xlsxFileName ,sheetn ,sourceFileName)">save_ifreq_xlsx</a>(ifreqs , freqs , [xlsxPath xlsxFilename] , ff , exportFiles{ff});
+0091     iFreqs_all_files = [iFreqs_all_files; ifreqs_all];
+0092     freqs_all_files = [freqs_all_files; cell2mat(freqs)'];
+0093     disp([<span class="string">'Saving data to '</span> xlsxPath xlsxFilename <span class="string">' ... '</span>])
+0094 <span class="keyword">end</span>
+0095 writetable(table(iFreqs_all_files) , [xlsxPath xlsxFilename] ,<span class="string">'Sheet'</span>,<span class="keyword">...</span>
+0096     ff+1,  <span class="string">'Range'</span> , <span class="string">'A2'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0097 writetable(table({<span class="string">'Inst. Freqs (All Files)'</span>}) ,[xlsxPath xlsxFilename] ,<span class="keyword">...</span>
+0098     <span class="string">'Sheet'</span>, ff+1, <span class="string">'Range'</span> , <span class="string">'A1'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0099 
+0100 writetable(table(freqs_all_files) , [xlsxPath xlsxFilename] ,<span class="string">'Sheet'</span>,<span class="keyword">...</span>
+0101     ff+1,  <span class="string">'Range'</span> , <span class="string">'C2'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0102 writetable(table({<span class="string">'Frequencies (All Files)'</span>}) ,[xlsxPath xlsxFilename] ,<span class="keyword">...</span>
+0103     <span class="string">'Sheet'</span>, ff+1, <span class="string">'Range'</span> , <span class="string">'C1'</span> , <span class="string">'WriteVariableNames'</span> , false);
+0104 
+0105 
+0106 
+0107 
+0108 
+0109 <span class="comment">% --- Executes on selection change in source_listbox.</span>
+0110 <a name="_sub4" href="#_subfunctions" class="code">function source_listbox_Callback(hObject, eventdata, handles)</a>
+0111 <span class="comment">% hObject    handle to source_listbox (see GCBO)</span>
+0112 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0113 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0114 <span class="keyword">global</span> src_selected_idx src_selected_str
+0115 contents = cellstr(get(hObject,<span class="string">'String'</span>));
+0116 src_selected_idx = get(hObject,<span class="string">'Value'</span>);
+0117 src_selected_str = contents(src_selected_idx);
+0118 
+0119 
+0120 guidata(hObject, handles);
+0121 
+0122 
+0123 <span class="comment">% --- Executes during object creation, after setting all properties.</span>
+0124 <a name="_sub5" href="#_subfunctions" class="code">function source_listbox_CreateFcn(hObject, eventdata, handles)</a>
+0125 <span class="comment">% hObject    handle to source_listbox (see GCBO)</span>
+0126 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0127 <span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+0128 
+0129 <span class="comment">% Hint: listbox controls usually have a white background on Windows.</span>
+0130 <span class="comment">%       See ISPC and COMPUTER.</span>
+0131 <span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+0132     set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+0133 <span class="keyword">end</span>
+0134 
+0135 
+0136 <span class="comment">% --- Executes on selection change in destination_listbox.</span>
+0137 <a name="_sub6" href="#_subfunctions" class="code">function destination_listbox_Callback(hObject, eventdata, handles)</a>
+0138 <span class="comment">% hObject    handle to destination_listbox (see GCBO)</span>
+0139 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0140 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0141 <span class="keyword">global</span> dest_selected_idx dest_selected_str
+0142 contents = cellstr(get(hObject,<span class="string">'String'</span>));
+0143 dest_selected_idx = get(hObject,<span class="string">'Value'</span>);
+0144 dest_selected_str = contents(dest_selected_idx);
+0145 
+0146 
+0147 <span class="comment">% --- Executes during object creation, after setting all properties.</span>
+0148 <a name="_sub7" href="#_subfunctions" class="code">function destination_listbox_CreateFcn(hObject, eventdata, handles)</a>
+0149 <span class="comment">% hObject    handle to destination_listbox (see GCBO)</span>
+0150 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0151 <span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+0152 
+0153 <span class="comment">% Hint: listbox controls usually have a white background on Windows.</span>
+0154 <span class="comment">%       See ISPC and COMPUTER.</span>
+0155 <span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+0156     set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+0157 <span class="keyword">end</span>
+0158 
+0159 
+0160 <span class="comment">% --- Executes on button press in add_button.</span>
+0161 <a name="_sub8" href="#_subfunctions" class="code">function add_button_Callback(hObject, eventdata, handles)</a>
+0162 <span class="comment">% hObject    handle to add_button (see GCBO)</span>
+0163 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0164 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0165 <span class="keyword">global</span> src_selected_str src_selected_idx dest_selected_str dest_selected_idx;
+0166 pause(0.02)
+0167 contents = cellstr(get(handles.source_listbox,<span class="string">'String'</span>));
+0168 <span class="keyword">if</span> ~isempty(contents)
+0169     
+0170     prev_list = get(handles.destination_listbox,<span class="string">'String'</span>);
+0171 
+0172     <span class="keyword">if</span> isempty(prev_list)
+0173         set(handles.destination_listbox,<span class="string">'String'</span>,src_selected_str)
+0174     <span class="keyword">else</span>
+0175 
+0176         new_list = [prev_list; src_selected_str];
+0177         set(handles.destination_listbox,<span class="string">'String'</span>,new_list)
+0178         contents = cellstr(get(handles.destination_listbox,<span class="string">'String'</span>));
+0179         <span class="keyword">if</span> ~isempty(contents)
+0180             dest_selected_idx = 1;
+0181             dest_selected_str = contents(dest_selected_idx);
+0182         <span class="keyword">end</span>
+0183     <span class="keyword">end</span>
+0184 
+0185     <a href="delete_item_from_listbox.html" class="code" title="function item_selected = delete_item_from_listbox(listbox_handle , item_idx)">delete_item_from_listbox</a>(handles.source_listbox , src_selected_idx);
+0186     contents = cellstr(get(handles.source_listbox,<span class="string">'String'</span>));
+0187     <span class="keyword">if</span> ~isempty(contents)
+0188         src_selected_idx = 1;
+0189         src_selected_str = contents(src_selected_idx);
+0190     <span class="keyword">end</span>
+0191 <span class="keyword">end</span>
+0192 guidata(hObject, handles);
+0193 
+0194 
+0195 <span class="comment">% --- Executes on button press in remove_button.</span>
+0196 <a name="_sub9" href="#_subfunctions" class="code">function remove_button_Callback(hObject, eventdata, handles)</a>
+0197 <span class="comment">% hObject    handle to remove_button (see GCBO)</span>
+0198 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0199 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0200 <span class="keyword">global</span> src_selected_str src_selected_idx dest_selected_str dest_selected_idx;
+0201 pause(0.02);
+0202 contents = cellstr(get(handles.destination_listbox,<span class="string">'String'</span>));
+0203 <span class="keyword">if</span> ~isempty(contents)
+0204     prev_list = get(handles.source_listbox,<span class="string">'String'</span>);
+0205 
+0206     <span class="keyword">if</span> isempty(prev_list)
+0207         set(handles.source_listbox,<span class="string">'String'</span>,dest_selected_str)
+0208     <span class="keyword">else</span>
+0209 
+0210         new_list = [prev_list; dest_selected_str];
+0211         set(handles.source_listbox,<span class="string">'String'</span>,new_list)
+0212         contents = cellstr(get(handles.source_listbox,<span class="string">'String'</span>));
+0213         <span class="keyword">if</span> ~isempty(contents)
+0214            src_selected_idx = 1;
+0215            src_selected_str = contents(src_selected_idx);
+0216         <span class="keyword">end</span>
+0217     <span class="keyword">end</span>
+0218 
+0219     <a href="delete_item_from_listbox.html" class="code" title="function item_selected = delete_item_from_listbox(listbox_handle , item_idx)">delete_item_from_listbox</a>(handles.destination_listbox , dest_selected_idx);
+0220     contents = cellstr(get(handles.destination_listbox,<span class="string">'String'</span>));
+0221 
+0222     <span class="keyword">if</span> ~isempty(contents)
+0223         dest_selected_idx = 1;
+0224         dest_selected_str = contents(dest_selected_idx);
+0225     <span class="keyword">end</span>
+0226 <span class="keyword">end</span>
+0227 guidata(hObject, handles);
+0228 
+0229 <span class="comment">% --- Executes on button press in select_files_button.</span>
+0230 <a name="_sub10" href="#_subfunctions" class="code">function select_files_button_Callback(hObject, eventdata, handles)</a>
+0231 <span class="comment">% hObject    handle to select_files_button (see GCBO)</span>
+0232 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0233 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0234 
+0235 <span class="keyword">global</span> stdFileNames src_selected_str src_selected_idx;
+0236 
+0237 selected_radio = get(handles.folder_selection_radiogroup , <span class="string">'SelectedObject'</span>);
+0238 selected_string = get(selected_radio , <span class="string">'String'</span>);
+0239 <span class="keyword">if</span> strcmp(selected_string , <span class="string">'Recursive'</span>)
+0240     baseDir = uigetdir(<span class="string">''</span> , <span class="string">'Select a folder'</span>);
+0241     stdFileNames = <a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>(baseDir , <span class="string">'^ifreqs.*.mat$'</span>);
+0242    
+0243 <span class="keyword">elseif</span> strcmp(selected_string , <span class="string">'Multi-select'</span>)
+0244     
+0245     filesnfolders = <a href="uipickfiles.html" class="code" title="function out = uipickfiles(varargin)">uipickfiles</a>(<span class="string">'REFilter'</span> ,<span class="string">'^ifreqs.*.mat$'</span>) ;
+0246     stdFileNames={};
+0247     <span class="keyword">for</span> fnf = 1:numel(filesnfolders)
+0248         <span class="keyword">if</span> isdir(filesnfolders{fnf})
+0249             stdFileNames = [stdFileNames <a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>(filesnfolders{fnf} , <span class="string">'^ifreqs.*.mat$'</span>)];
+0250         <span class="keyword">else</span>
+0251             stdFileNames = [stdFileNames filesnfolders{fnf}];
+0252         <span class="keyword">end</span>
+0253     <span class="keyword">end</span>
+0254 <span class="keyword">else</span>
+0255     error([<span class="string">'Radio button reading error due to ambiguous radio button string value:'</span> selected_string])
+0256 <span class="keyword">end</span>
+0257 
+0258 set(handles.source_listbox , <span class="string">'String'</span> ,  stdFileNames)
+0259 contents = cellstr(get(handles.source_listbox,<span class="string">'String'</span>));
+0260 <span class="keyword">if</span> ~isempty(contents)
+0261     src_selected_idx = 1;
+0262     src_selected_str = contents(src_selected_idx);
+0263 <span class="keyword">end</span>
+0264 guidata(hObject, handles);</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

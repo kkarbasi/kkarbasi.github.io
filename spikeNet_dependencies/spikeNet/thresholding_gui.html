@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of thresholding_gui</title>
+  <meta name="keywords" content="thresholding_gui">
+  <meta name="description" content="THRESHOLDING_GUI MATLAB code for thresholding_gui.fig">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>thresholding_gui
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>THRESHOLDING_GUI MATLAB code for thresholding_gui.fig</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function varargout = thresholding_gui(varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> THRESHOLDING_GUI MATLAB code for thresholding_gui.fig
+      THRESHOLDING_GUI, by itself, creates a new THRESHOLDING_GUI or raises the existing
+      singleton*.
+
+      H = THRESHOLDING_GUI returns the handle to a new THRESHOLDING_GUI or the handle to
+      the existing singleton*.
+
+      THRESHOLDING_GUI('CALLBACK',hObject,eventData,handles,...) calls the local
+      function named CALLBACK in THRESHOLDING_GUI.M with the given input arguments.
+
+      THRESHOLDING_GUI('Property','Value',...) creates a new THRESHOLDING_GUI or raises the
+      existing singleton*.  Starting from the left, property value pairs are
+      applied to the GUI before thresholding_gui_OpeningFcn gets called.  An
+      unrecognized property name or invalid value makes property application
+      stop.  All inputs are passed to thresholding_gui_OpeningFcn via varargin.
+
+      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one
+      instance to run (singleton)&quot;.
+
+ See also: GUIDE, GUIDATA, GUIHANDLES</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="burstAggregator.html" class="code" title="function fireTimes = burstAggregator(spike_times , fireGap)">burstAggregator</a>	Rearming function. Bins the spike_times with less than</li><li><a href="createROIfigure.html" class="code" title="function [axeshandels , figure1] = createROIfigure">createROIfigure</a>	CREATEFIGURE1</li><li><a href="ifreq.html" class="code" title="function [ifreq , freq] = ifreq(rasterSpikeTime)">ifreq</a>	Input: a vector of spike times (i.e. the times at which there are spikes)</li><li><a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>	OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</li><li><a href="uipickfiles.html" class="code" title="function out = uipickfiles(varargin)">uipickfiles</a>	uipickfiles: GUI program to select files and/or folders.</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function thresholding_gui_OpeningFcn(hObject, eventdata, handles, varargin)</a></li><li><a href="#_sub2" class="code">function varargout = thresholding_gui_OutputFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub3" class="code">function preview_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub4" class="code">function save_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub5" class="code">function thresh_box_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub6" class="code">function thresh_box_CreateFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub7" class="code">function set_thresh_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub8" class="code">function select_file_button_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub9" class="code">function plot_distribution(dffSNRValues , axes_handle , hObject, handles)</a></li><li><a href="#_sub10" class="code">function rearm_popup_Callback(hObject, eventdata, handles)</a></li><li><a href="#_sub11" class="code">function rearm_popup_CreateFcn(hObject, eventdata, handles)</a></li></ul>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function varargout = thresholding_gui(varargin)</a>
+0002 <span class="comment">% THRESHOLDING_GUI MATLAB code for thresholding_gui.fig</span>
+0003 <span class="comment">%      THRESHOLDING_GUI, by itself, creates a new THRESHOLDING_GUI or raises the existing</span>
+0004 <span class="comment">%      singleton*.</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">%      H = THRESHOLDING_GUI returns the handle to a new THRESHOLDING_GUI or the handle to</span>
+0007 <span class="comment">%      the existing singleton*.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">%      THRESHOLDING_GUI('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+0010 <span class="comment">%      function named CALLBACK in THRESHOLDING_GUI.M with the given input arguments.</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">%      THRESHOLDING_GUI('Property','Value',...) creates a new THRESHOLDING_GUI or raises the</span>
+0013 <span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+0014 <span class="comment">%      applied to the GUI before thresholding_gui_OpeningFcn gets called.  An</span>
+0015 <span class="comment">%      unrecognized property name or invalid value makes property application</span>
+0016 <span class="comment">%      stop.  All inputs are passed to thresholding_gui_OpeningFcn via varargin.</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one</span>
+0019 <span class="comment">%      instance to run (singleton)&quot;.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+0022 
+0023 <span class="comment">% Edit the above text to modify the response to help thresholding_gui</span>
+0024 
+0025 <span class="comment">% Last Modified by GUIDE v2.5 21-Oct-2016 16:02:23</span>
+0026 
+0027 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0028 <span class="comment">% Author: Kaveh Karbasi</span>
+0029 <span class="keyword">global</span> rearm_factor;
+0030 rearm_factor = 2;
+0031 
+0032 gui_Singleton = 1;
+0033 gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+0034                    <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+0035                    <span class="string">'gui_OpeningFcn'</span>, @<a href="#_sub1" class="code" title="subfunction thresholding_gui_OpeningFcn(hObject, eventdata, handles, varargin)">thresholding_gui_OpeningFcn</a>, <span class="keyword">...</span>
+0036                    <span class="string">'gui_OutputFcn'</span>,  @<a href="#_sub2" class="code" title="subfunction varargout = thresholding_gui_OutputFcn(hObject, eventdata, handles)">thresholding_gui_OutputFcn</a>, <span class="keyword">...</span>
+0037                    <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+0038                    <span class="string">'gui_Callback'</span>,   []);
+0039 <span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+0040     gui_State.gui_Callback = str2func(varargin{1});
+0041 <span class="keyword">end</span>
+0042 
+0043 <span class="keyword">if</span> nargout
+0044     [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+0045 <span class="keyword">else</span>
+0046     gui_mainfcn(gui_State, varargin{:});
+0047 <span class="keyword">end</span>
+0048 <span class="comment">% End initialization code - DO NOT EDIT</span>
+0049 
+0050 
+0051 <span class="comment">% --- Executes just before thresholding_gui is made visible.</span>
+0052 <a name="_sub1" href="#_subfunctions" class="code">function thresholding_gui_OpeningFcn(hObject, eventdata, handles, varargin)</a>
+0053 <span class="comment">% This function has no output args, see OutputFcn.</span>
+0054 <span class="comment">% hObject    handle to figure</span>
+0055 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0056 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0057 <span class="comment">% varargin   command line arguments to thresholding_gui (see VARARGIN)</span>
+0058 
+0059 <span class="comment">% Choose default command line output for thresholding_gui</span>
+0060 handles.output = hObject;
+0061 
+0062 <span class="comment">% Update handles structure</span>
+0063 guidata(hObject, handles);
+0064 
+0065 <span class="comment">% UIWAIT makes thresholding_gui wait for user response (see UIRESUME)</span>
+0066 <span class="comment">% uiwait(handles.figure1);</span>
+0067 
+0068 
+0069 <span class="comment">% --- Outputs from this function are returned to the command line.</span>
+0070 <a name="_sub2" href="#_subfunctions" class="code">function varargout = thresholding_gui_OutputFcn(hObject, eventdata, handles) </a>
+0071 <span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+0072 <span class="comment">% hObject    handle to figure</span>
+0073 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0074 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0075 
+0076 <span class="comment">% Get default command line output from handles structure</span>
+0077 varargout{1} = handles.output;
+0078 
+0079 
+0080 <span class="comment">% --- Executes on button press in preview_button.</span>
+0081 <a name="_sub3" href="#_subfunctions" class="code">function preview_button_Callback(hObject, eventdata, handles)</a>
+0082 <span class="comment">% hObject    handle to preview_button (see GCBO)</span>
+0083 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0084 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0085 <span class="keyword">global</span> stdFileNames thresh rearm_factor;
+0086 
+0087 
+0088 contents = cellstr(get(handles.rearm_popup,<span class="string">'String'</span>));
+0089 selected_idx = get(handles.rearm_popup,<span class="string">'Value'</span>);
+0090 selected_str = contents{selected_idx};
+0091 
+0092 
+0093 rearm_factor = str2num(selected_str);
+0094 ROI_counts = 0;
+0095 axhandles = <a href="createROIfigure.html" class="code" title="function [axeshandels , figure1] = createROIfigure">createROIfigure</a>;
+0096 <span class="keyword">for</span> ff = 1:numel(stdFileNames)
+0097     file_path = strsplit(stdFileNames{ff},{<span class="string">'/'</span>,<span class="string">'\\'</span>});
+0098     area_label = file_path{end-1};
+0099     spikeDataNote = file_path{end};
+0100     hyphen_index = strfind(spikeDataNote,<span class="string">'-'</span>);
+0101     movie_label = <span class="string">''</span>;
+0102     <span class="keyword">if</span> ~isempty(hyphen_index)
+0103         period_index = strfind(spikeDataNote,<span class="string">'.'</span>);
+0104         movie_label = spikeDataNote(hyphen_index(1):period_index(1)-1);
+0105     <span class="keyword">end</span> 
+0106     roi_label = 1;
+0107     load(stdFileNames{ff} , <span class="string">'rasterSpikeTimes'</span> , <span class="string">'ROI_traces'</span> , <span class="string">'dff_snr'</span> )
+0108     <span class="keyword">for</span> dd = 1:numel(rasterSpikeTimes)
+0109         ROI_counts = ROI_counts + 1;
+0110         tmp = dff_snr{dd};
+0111         tmp(tmp &lt; thresh) = NaN;
+0112         rasterSpikeTimes{dd} = find(~isnan(tmp));
+0113         rasterSpikeTimes{dd} = <a href="burstAggregator.html" class="code" title="function fireTimes = burstAggregator(spike_times , fireGap)">burstAggregator</a>(rasterSpikeTimes{dd} , rearm_factor);
+0114         
+0115         
+0116         <span class="keyword">if</span> mod(ROI_counts , 9) ~= 0
+0117             
+0118             axes(axhandles{mod(ROI_counts , 9)}(<span class="string">'trace'</span>))
+0119             plot(ROI_traces{dd})
+0120             traceLength = numel(ROI_traces{dd});
+0121             
+0122             axes(axhandles{mod(ROI_counts , 9)}(<span class="string">'spikes'</span>))
+0123             t = rasterSpikeTimes{dd};
+0124             <span class="keyword">for</span> ll = 1:numel(t)
+0125                 line([t(ll)  t(ll)] , [0.0  1.0] , <span class="string">'Color'</span> , <span class="string">'k'</span>)
+0126             <span class="keyword">end</span>
+0127             line([traceLength traceLength] , [0.0 1.0] , <span class="string">'Color'</span> , <span class="string">'w'</span>);
+0128             line([1 1] , [0.0 1.0] , <span class="string">'Color'</span> , <span class="string">'w'</span>);
+0129             title([area_label movie_label <span class="string">' ROI '</span> int2str(roi_label)]);
+0130             roi_label = roi_label + 1;
+0131             
+0132         <span class="keyword">else</span>
+0133             axes(axhandles{9}(<span class="string">'trace'</span>));
+0134             plot(ROI_traces{dd})
+0135             
+0136             axes(axhandles{9}(<span class="string">'spikes'</span>));
+0137             t = rasterSpikeTimes{dd};
+0138             <span class="keyword">for</span> ll = 1:numel(t)
+0139                 line([t(ll)  t(ll)] , [0.0  1.0] , <span class="string">'Color'</span> , <span class="string">'k'</span>)
+0140             <span class="keyword">end</span>
+0141             line([traceLength traceLength] , [0.0 1.0] , <span class="string">'Color'</span> , <span class="string">'w'</span>);
+0142             line([1 1] , [0.0 1.0] , <span class="string">'Color'</span> , <span class="string">'w'</span>);
+0143             title([area_label movie_label <span class="string">' ROI '</span> int2str(roi_label)]);
+0144             roi_label = roi_label + 1;
+0145             axhandles = <a href="createROIfigure.html" class="code" title="function [axeshandels , figure1] = createROIfigure">createROIfigure</a>;
+0146         <span class="keyword">end</span>
+0147     <span class="keyword">end</span>    
+0148 
+0149 <span class="keyword">end</span>
+0150 guidata(hObject, handles);
+0151 
+0152 <span class="comment">% --- Executes on button press in save_button.</span>
+0153 <a name="_sub4" href="#_subfunctions" class="code">function save_button_Callback(hObject, eventdata, handles)</a>
+0154 <span class="comment">% hObject    handle to save_button (see GCBO)</span>
+0155 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0156 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0157 <span class="keyword">global</span> stdFileNames thresh rearm_factor;
+0158 
+0159 contents = cellstr(get(handles.rearm_popup,<span class="string">'String'</span>));
+0160 selected_idx = get(handles.rearm_popup,<span class="string">'Value'</span>);
+0161 selected_str = contents{selected_idx};
+0162 
+0163 
+0164 rearm_factor = str2num(selected_str);
+0165 
+0166 <span class="keyword">for</span> ff = 1:numel(stdFileNames)
+0167     load(stdFileNames{ff} , <span class="string">'rasterSpikeTimes'</span> , <span class="string">'dff_snr'</span> , <span class="string">'ROI_traces'</span>)
+0168     ifreqs = {};
+0169     freqs = {};
+0170     file_path = strsplit(stdFileNames{ff},{<span class="string">'/'</span>,<span class="string">'\\'</span>});
+0171     spikeDataNote = file_path{end};
+0172     hyphen_index = strfind(spikeDataNote,<span class="string">'-'</span>);
+0173     ifreq_note = <span class="string">''</span>;
+0174     <span class="keyword">if</span> ~isempty(hyphen_index)
+0175         period_index = strfind(spikeDataNote,<span class="string">'.'</span>);
+0176         ifreq_note = spikeDataNote(hyphen_index(1):period_index(1)-1);
+0177     <span class="keyword">end</span>
+0178     
+0179     <span class="keyword">for</span> dd = 1:numel(dff_snr)
+0180         tmp = dff_snr{dd};
+0181         tmp(tmp &lt; thresh) = NaN;
+0182         rasterSpikeTimes{dd} = find(~isnan(tmp));
+0183        
+0184         rasterSpikeTimes{dd} = <a href="burstAggregator.html" class="code" title="function fireTimes = burstAggregator(spike_times , fireGap)">burstAggregator</a>(rasterSpikeTimes{dd} , rearm_factor);
+0185         [ifreqs{dd} , freqs{dd}] = <a href="ifreq.html" class="code" title="function [ifreq , freq] = ifreq(rasterSpikeTime)">ifreq</a>(rasterSpikeTimes{dd}); 
+0186         freqs{dd} = freqs{dd}/10;
+0187     <span class="keyword">end</span>
+0188     <span class="keyword">if</span> exist(stdFileNames{ff}, <span class="string">'file'</span>)
+0189     save(stdFileNames{ff} ,  <span class="string">'rasterSpikeTimes'</span> ,   <span class="string">'-append'</span>);
+0190     <span class="keyword">else</span>
+0191         error(<span class="string">'No spikesData.mat file exists'</span>)
+0192     <span class="keyword">end</span>
+0193     [pathstr,t1,t2] = fileparts(stdFileNames{ff}); 
+0194     filename = [<span class="string">'ifreqs'</span> ifreq_note <span class="string">'.mat'</span>];
+0195     <span class="keyword">if</span> exist([pathstr filesep filename], <span class="string">'file'</span>)
+0196       save([pathstr filesep filename] , <span class="string">'ifreqs'</span> , <span class="string">'freqs'</span> , <span class="string">'-append'</span>)
+0197     <span class="keyword">else</span>
+0198       save([pathstr filesep filename], <span class="string">'ifreqs'</span> , <span class="string">'freqs'</span>)
+0199     <span class="keyword">end</span>
+0200     
+0201 <span class="keyword">end</span>
+0202 disp(<span class="string">'Spike times updated and saved'</span>)
+0203 <span class="comment">% delete(wh);</span>
+0204 
+0205 guidata(hObject, handles);
+0206 
+0207 
+0208 <a name="_sub5" href="#_subfunctions" class="code">function thresh_box_Callback(hObject, eventdata, handles)</a>
+0209 <span class="comment">% hObject    handle to thresh_box (see GCBO)</span>
+0210 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0211 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0212 
+0213 <span class="comment">% Hints: get(hObject,'String') returns contents of thresh_box as text</span>
+0214 <span class="comment">%        str2double(get(hObject,'String')) returns contents of thresh_box as a double</span>
+0215 
+0216 
+0217 <span class="comment">% --- Executes during object creation, after setting all properties.</span>
+0218 <a name="_sub6" href="#_subfunctions" class="code">function thresh_box_CreateFcn(hObject, eventdata, handles)</a>
+0219 <span class="comment">% hObject    handle to thresh_box (see GCBO)</span>
+0220 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0221 <span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+0222 
+0223 <span class="comment">% Hint: edit controls usually have a white background on Windows.</span>
+0224 <span class="comment">%       See ISPC and COMPUTER.</span>
+0225 <span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+0226     set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+0227 <span class="keyword">end</span>
+0228 
+0229 
+0230 <span class="comment">% --- Executes on button press in set_thresh_button.</span>
+0231 <a name="_sub7" href="#_subfunctions" class="code">function set_thresh_button_Callback(hObject, eventdata, handles)</a>
+0232 <span class="comment">% hObject    handle to set_thresh_button (see GCBO)</span>
+0233 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0234 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0235 <span class="keyword">global</span> thresh lh dffSNRdist;
+0236 thresh = str2double(get(handles.thresh_box , <span class="string">'String'</span>));
+0237 delete(lh);
+0238 lh = line([thresh thresh] , [0 max(dffSNRdist)] , <span class="string">'Color'</span> , <span class="string">'r'</span>);
+0239 guidata(hObject, handles);
+0240 
+0241 <span class="comment">% --- Executes on button press in select_file_button.</span>
+0242 <a name="_sub8" href="#_subfunctions" class="code">function select_file_button_Callback(hObject, eventdata, handles)</a>
+0243 
+0244 <span class="comment">% hObject    handle to select_file_button (see GCBO)</span>
+0245 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0246 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0247 <span class="keyword">global</span> stdFileNames;
+0248 
+0249 dffSNRValues = [];
+0250 
+0251 selected_radio = get(handles.folder_selection_radiogroup , <span class="string">'SelectedObject'</span>);
+0252 selected_string = get(selected_radio , <span class="string">'String'</span>);
+0253 <span class="keyword">if</span> strcmp(selected_string , <span class="string">'Recursive'</span>)
+0254     disp(<span class="string">'rec'</span>)
+0255     baseDir = uigetdir(<span class="string">''</span> , <span class="string">'Select a folder'</span>);
+0256     stdFileNames = <a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>(baseDir , <span class="string">'^spikesData.*.mat$'</span>)
+0257    
+0258 <span class="keyword">elseif</span> strcmp(selected_string , <span class="string">'Multi-select'</span>)
+0259     disp(<span class="string">'ms'</span>)
+0260     stdFileNames = <a href="uipickfiles.html" class="code" title="function out = uipickfiles(varargin)">uipickfiles</a>(<span class="string">'REFilter'</span> ,<span class="string">'^spikesData.*.mat$'</span>) ;
+0261 <span class="keyword">else</span>
+0262     error([<span class="string">'Radio button reading error due to ambiguous radio button string value:'</span> selected_string])
+0263 <span class="keyword">end</span>
+0264 
+0265 <span class="keyword">if</span> isempty(stdFileNames)
+0266     errordlg(<span class="string">'No files found'</span>);
+0267 <span class="keyword">else</span>
+0268 
+0269     <span class="keyword">for</span> ff = 1:numel(stdFileNames)
+0270         load(stdFileNames{ff} , <span class="string">'dff_snr'</span> )
+0271         <span class="keyword">for</span> bb = 1:numel(dff_snr)
+0272             dffSNRValues = [dffSNRValues dff_snr{bb}];
+0273         <span class="keyword">end</span>
+0274        
+0275     <span class="keyword">end</span>
+0276     <a href="#_sub9" class="code" title="subfunction plot_distribution(dffSNRValues , axes_handle , hObject, handles)">plot_distribution</a>(dffSNRValues , handles.dist_axes, hObject, handles)
+0277 <span class="keyword">end</span>
+0278 
+0279 guidata(hObject, handles);
+0280 
+0281 
+0282 
+0283 <a name="_sub9" href="#_subfunctions" class="code">function plot_distribution(dffSNRValues , axes_handle , hObject, handles)</a>
+0284 <span class="comment">% dffSNRValues: A vector containg SNRs of all spikes</span>
+0285 <span class="comment">% axes_handle:  Axes on which distribution is displayed</span>
+0286 
+0287 <span class="keyword">global</span> lh thresh dffSNRdist;
+0288 
+0289 thresh = 5;
+0290 set(axes_handle , <span class="string">'Visible'</span> , <span class="string">'on'</span>)
+0291 axes(axes_handle);
+0292 binranges = (-5 : 0.2 : 40);
+0293 dffSNRdist = histc(dffSNRValues , binranges);
+0294 bar(binranges , dffSNRdist , <span class="string">'histc'</span>);
+0295 
+0296 title(<span class="string">'SNR of $$\frac{\Delta F}{F}$$ distribution'</span>  , <span class="string">'Interpreter'</span> , <span class="string">'latex'</span>)
+0297 lh = line([thresh thresh] , [0 max(dffSNRdist)] , <span class="string">'Color'</span> , <span class="string">'r'</span>);
+0298 set(handles.thresh_box , <span class="string">'String'</span> , num2str(thresh));
+0299 guidata(hObject, handles);
+0300 
+0301 
+0302 <span class="comment">% --- Executes on selection change in rearm_popup.</span>
+0303 <a name="_sub10" href="#_subfunctions" class="code">function rearm_popup_Callback(hObject, eventdata, handles)</a>
+0304 <span class="comment">% hObject    handle to rearm_popup (see GCBO)</span>
+0305 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0306 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0307 
+0308 <span class="comment">% Hints: contents = cellstr(get(hObject,'String')) returns rearm_popup contents as cell array</span>
+0309 <span class="comment">%        contents{get(hObject,'Value')} returns selected item from rearm_popup</span>
+0310 
+0311 
+0312 <span class="comment">% --- Executes during object creation, after setting all properties.</span>
+0313 <a name="_sub11" href="#_subfunctions" class="code">function rearm_popup_CreateFcn(hObject, eventdata, handles)</a>
+0314 <span class="comment">% hObject    handle to rearm_popup (see GCBO)</span>
+0315 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0316 <span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+0317 
+0318 <span class="comment">% Hint: popupmenu controls usually have a white background on Windows.</span>
+0319 <span class="comment">%       See ISPC and COMPUTER.</span>
+0320 <span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+0321     set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+0322 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

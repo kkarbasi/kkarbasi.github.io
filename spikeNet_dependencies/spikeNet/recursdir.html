@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of recursdir</title>
+  <meta name="keywords" content="recursdir">
+  <meta name="description" content="OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>recursdir
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function Outfiles=recursdir(baseDir,searchExpression) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)
+ A recursive search to find files that match the search expression</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>	OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="batchkmeans_gui2.html" class="code" title="function varargout = batchkmeans_gui2(varargin)">batchkmeans_gui2</a>	BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig</li><li><a href="freqExport_gui.html" class="code" title="function varargout = freqExport_gui(varargin)">freqExport_gui</a>	FREQEXPORT_GUI MATLAB code for freqExport_gui.fig</li><li><a href="freq_browser.html" class="code" title="function varargout = freq_browser(varargin)">freq_browser</a>	FREQ_BROWSER MATLAB code for freq_browser.fig</li><li><a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>	OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</li><li><a href="thresholding_gui.html" class="code" title="function varargout = thresholding_gui(varargin)">thresholding_gui</a>	THRESHOLDING_GUI MATLAB code for thresholding_gui.fig</li><li><a href="trace_browser.html" class="code" title="function varargout = trace_browser(varargin)">trace_browser</a>	TRACE_BROWSER MATLAB code for trace_browser.fig</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function Outfiles=recursdir(baseDir,searchExpression)</a>
+0002 <span class="comment">% OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</span>
+0003 <span class="comment">% A recursive search to find files that match the search expression</span>
+0004 <span class="comment">%</span>
+0005 
+0006 dstr = dir(baseDir);<span class="comment">%search current directory and put results in structure</span>
+0007 Outfiles = {};
+0008 <span class="keyword">for</span> II = 1:length(dstr)
+0009     <span class="keyword">if</span> ~dstr(II).isdir &amp;&amp; ~isempty(regexp(dstr(II).name,searchExpression,<span class="string">'match'</span>)) 
+0010     <span class="comment">%look for a match that isn't a directory</span>
+0011         Outfiles{length(Outfiles)+1} = fullfile(baseDir,dstr(II).name);
+0012     <span class="keyword">elseif</span> dstr(II).isdir &amp;&amp; ~strcmp(dstr(II).name,<span class="string">'.'</span>) &amp;&amp; ~strcmp(dstr(II).name,<span class="string">'..'</span>) 
+0013     <span class="comment">%if it is a directory(and not current or up a level), search in that</span>
+0014         pname = fullfile(baseDir,dstr(II).name);
+0015         OutfilesTemp=<a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>(pname,searchExpression);
+0016         <span class="keyword">if</span> ~isempty(OutfilesTemp)
+0017         <span class="comment">%if recursive search is fruitful, add it to the current list</span>
+0018             Outfiles((length(Outfiles)+1):(length(Outfiles)+length(OutfilesTemp))) = OutfilesTemp;
+0019         <span class="keyword">end</span>
+0020     <span class="keyword">end</span>
+0021 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of batchkmeans_gui2</title>
+  <meta name="keywords" content="batchkmeans_gui2">
+  <meta name="description" content="BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>batchkmeans_gui2
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function varargout = batchkmeans_gui2(varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig
+      BATCHKMEANS_GUI2, by itself, creates a new BATCHKMEANS_GUI2 or raises the existing
+      singleton*.
+
+      H = BATCHKMEANS_GUI2 returns the handle to a new BATCHKMEANS_GUI2 or the handle to
+      the existing singleton*.
+
+      BATCHKMEANS_GUI2('CALLBACK',hObject,eventData,handles,...) calls the local
+      function named CALLBACK in BATCHKMEANS_GUI2.M with the given input arguments.
+
+      BATCHKMEANS_GUI2('Property','Value',...) creates a new BATCHKMEANS_GUI2 or raises the
+      existing singleton*.  Starting from the left, property value pairs are
+      applied to the GUI before batchkmeans_gui2_OpeningFcn gets called.  An
+      unrecognized property name or invalid value makes property application
+      stop.  All inputs are passed to batchkmeans_gui2_OpeningFcn via varargin.
+
+      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one
+      instance to run (singleton)&quot;.
+
+ See also: GUIDE, GUIDATA, GUIHANDLES</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="burstAggregator.html" class="code" title="function fireTimes = burstAggregator(spike_times , fireGap)">burstAggregator</a>	Rearming function. Bins the spike_times with less than</li><li><a href="getBkgSubtractedTraces.html" class="code" title="function [bkgSubtracted_traces , ROI_traces] = getBkgSubtractedTraces(tiffStack, ROI_masks , Bkg_mask , bkg_decision)">getBkgSubtractedTraces</a>	Inputs:</li><li><a href="kmeans_sd_with_dff_thresh3.html" class="code" title="function [clusters , spikes_cluster_idx , baseline_cluster_idx , rasterSpikeTime , dff1 , dff_snr] = kmeans_sd_with_dff_thresh3(trace_features , ROI_tracein , K , dff_thresh)">kmeans_sd_with_dff_thresh3</a>	Core kmeans function</li><li><a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>	OUTFILES = RECURSDIR(BASEDIRECTORY,SEARCHEXPRESSION)</li><li><a href="sliding_window_flattener.html" class="code" title="function lbtrace = sliding_window_flattener ( trace , window_size)">sliding_window_flattener</a>	Inputs: A trace and window size</li><li><a href="tiffStackReaderFast.html" class="code" title="function tiffStack = tiffStackReaderFast(filename)">tiffStackReaderFast</a>	Copyright 2016 The Miller Lab, UC Berkeley</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function batchkmeans_gui2_OpeningFcn(hObject, eventdata, handles, varargin)</a></li><li><a href="#_sub2" class="code">function varargout = batchkmeans_gui2_OutputFcn(hObject, eventdata, handles)</a></li><li><a href="#_sub3" class="code">function folder_button_Callback(hObject, eventdata, handles)</a></li></ul>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function varargout = batchkmeans_gui2(varargin)</a>
+0002 <span class="comment">% BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig</span>
+0003 <span class="comment">%      BATCHKMEANS_GUI2, by itself, creates a new BATCHKMEANS_GUI2 or raises the existing</span>
+0004 <span class="comment">%      singleton*.</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">%      H = BATCHKMEANS_GUI2 returns the handle to a new BATCHKMEANS_GUI2 or the handle to</span>
+0007 <span class="comment">%      the existing singleton*.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">%      BATCHKMEANS_GUI2('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+0010 <span class="comment">%      function named CALLBACK in BATCHKMEANS_GUI2.M with the given input arguments.</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">%      BATCHKMEANS_GUI2('Property','Value',...) creates a new BATCHKMEANS_GUI2 or raises the</span>
+0013 <span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+0014 <span class="comment">%      applied to the GUI before batchkmeans_gui2_OpeningFcn gets called.  An</span>
+0015 <span class="comment">%      unrecognized property name or invalid value makes property application</span>
+0016 <span class="comment">%      stop.  All inputs are passed to batchkmeans_gui2_OpeningFcn via varargin.</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose &quot;GUI allows only one</span>
+0019 <span class="comment">%      instance to run (singleton)&quot;.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+0022 
+0023 <span class="comment">% Edit the above text to modify the response to help batchkmeans_gui2</span>
+0024 
+0025 <span class="comment">% Last Modified by GUIDE v2.5 20-Nov-2016 22:18:06</span>
+0026 
+0027 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0028 <span class="comment">% Author: Kaveh Karbasi</span>
+0029 gui_Singleton = 1;
+0030 gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+0031                    <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+0032                    <span class="string">'gui_OpeningFcn'</span>, @<a href="#_sub1" class="code" title="subfunction batchkmeans_gui2_OpeningFcn(hObject, eventdata, handles, varargin)">batchkmeans_gui2_OpeningFcn</a>, <span class="keyword">...</span>
+0033                    <span class="string">'gui_OutputFcn'</span>,  @<a href="#_sub2" class="code" title="subfunction varargout = batchkmeans_gui2_OutputFcn(hObject, eventdata, handles)">batchkmeans_gui2_OutputFcn</a>, <span class="keyword">...</span>
+0034                    <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+0035                    <span class="string">'gui_Callback'</span>,   []);
+0036 <span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+0037     gui_State.gui_Callback = str2func(varargin{1});
+0038 <span class="keyword">end</span>
+0039 
+0040 <span class="keyword">if</span> nargout
+0041     [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+0042 <span class="keyword">else</span>
+0043     gui_mainfcn(gui_State, varargin{:});
+0044 <span class="keyword">end</span>
+0045 <span class="comment">% End initialization code - DO NOT EDIT</span>
+0046 
+0047 
+0048 <span class="comment">% --- Executes just before batchkmeans_gui2 is made visible.</span>
+0049 <a name="_sub1" href="#_subfunctions" class="code">function batchkmeans_gui2_OpeningFcn(hObject, eventdata, handles, varargin)</a>
+0050 <span class="comment">% This function has no output args, see OutputFcn.</span>
+0051 <span class="comment">% hObject    handle to figure</span>
+0052 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0053 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0054 <span class="comment">% varargin   command line arguments to batchkmeans_gui2 (see VARARGIN)</span>
+0055 
+0056 <span class="comment">% Choose default command line output for batchkmeans_gui2</span>
+0057 handles.output = hObject;
+0058 
+0059 <span class="comment">% Update handles structure</span>
+0060 guidata(hObject, handles);
+0061 
+0062 <span class="comment">% UIWAIT makes batchkmeans_gui2 wait for user response (see UIRESUME)</span>
+0063 <span class="comment">% uiwait(handles.figure1);</span>
+0064 
+0065 
+0066 <span class="comment">% --- Outputs from this function are returned to the command line.</span>
+0067 <a name="_sub2" href="#_subfunctions" class="code">function varargout = batchkmeans_gui2_OutputFcn(hObject, eventdata, handles) </a>
+0068 <span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+0069 <span class="comment">% hObject    handle to figure</span>
+0070 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0071 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0072 
+0073 <span class="comment">% Get default command line output from handles structure</span>
+0074 varargout{1} = handles.output;
+0075 
+0076 
+0077 <span class="comment">% --- Executes on button press in folder_button.</span>
+0078 <a name="_sub3" href="#_subfunctions" class="code">function folder_button_Callback(hObject, eventdata, handles)</a>
+0079 <span class="comment">% hObject    handle to folder_button (see GCBO)</span>
+0080 <span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+0081 <span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+0082 
+0083 <span class="keyword">global</span> stdFileNames thresh lh dffdist rearm_factor dffSNRdist;
+0084 
+0085 set(handles.radiobutton1 , <span class="string">'Enable'</span> , <span class="string">'off'</span>);
+0086 set(handles.radiobutton2 , <span class="string">'Enable'</span> , <span class="string">'off'</span>);
+0087 set(handles.radiobutton3 , <span class="string">'Enable'</span> , <span class="string">'off'</span>);
+0088 
+0089 
+0090 <span class="keyword">try</span>
+0091     baseDir = uigetdir(<span class="string">''</span> , <span class="string">'Select a folder'</span>);
+0092     set(handles.folder_text , <span class="string">'String'</span> , baseDir)
+0093     stdFileNames = <a href="recursdir.html" class="code" title="function Outfiles=recursdir(baseDir,searchExpression)">recursdir</a>(baseDir , <span class="string">'^std.*\.mat$'</span>);
+0094     window = 50;
+0095     K = 3;
+0096     rearm_factor = 2;
+0097 
+0098     spikesDFFValues = [];
+0099     dffSNRValues = [];
+0100     set(handles.info_txt , <span class="string">'String'</span> , <span class="string">'Processing...'</span>);
+0101     <span class="keyword">for</span> ff = 1:numel(stdFileNames)
+0102         
+0103         load(stdFileNames{ff});
+0104         [stdpath,stdname,stdext] = fileparts(stdFileNames{ff});
+0105         <span class="keyword">for</span> curr_file_index = 2:numel(stackpath)
+0106             
+0107             curr_file_name = stackpath{curr_file_index};
+0108             curr_file_path = [stackpath{1} curr_file_name];
+0109             warning(<span class="string">'off'</span> , <span class="string">'all'</span>);
+0110             tiffStack = <a href="tiffStackReaderFast.html" class="code" title="function tiffStack = tiffStackReaderFast(filename)">tiffStackReaderFast</a>(curr_file_path);
+0111             warning(<span class="string">'on'</span> , <span class="string">'all'</span>);
+0112 
+0113             selected_radio = get(handles.bkg_radiob , <span class="string">'SelectedObject'</span>);
+0114             selected_string = get(selected_radio , <span class="string">'String'</span>);
+0115 
+0116             [bkg_subtracted_traces , ROI_traces] = <a href="getBkgSubtractedTraces.html" class="code" title="function [bkgSubtracted_traces , ROI_traces] = getBkgSubtractedTraces(tiffStack, ROI_masks , Bkg_mask , bkg_decision)">getBkgSubtractedTraces</a>(tiffStack , ROI_masks , bkg_cell_stack{curr_file_index-1},selected_string);
+0117 
+0118             sizeTraces = size(bkg_subtracted_traces);
+0119             diffFeatures = cell(sizeTraces);
+0120             clusters = cell(sizeTraces);
+0121             spikes_cluster_idx = cell(sizeTraces);
+0122             baseline_cluster_idx = cell(sizeTraces);
+0123             rasterSpikeTimes = cell(sizeTraces);
+0124             dffs = cell(sizeTraces);
+0125             dff_snr = cell(sizeTraces);
+0126 
+0127             <span class="keyword">for</span> bb = 1:numel(bkg_subtracted_traces)
+0128 
+0129                 diffFeatures{bb} = <a href="sliding_window_flattener.html" class="code" title="function lbtrace = sliding_window_flattener ( trace , window_size)">sliding_window_flattener</a>(bkg_subtracted_traces{bb} , window);
+0130                 [clusters{bb} , spikes_cluster_idx{bb} , baseline_cluster_idx{bb} , rasterSpikeTimes{bb} , dffs{bb} , dff_snr{bb}] = <span class="keyword">...</span>
+0131                                        <a href="kmeans_sd_with_dff_thresh3.html" class="code" title="function [clusters , spikes_cluster_idx , baseline_cluster_idx , rasterSpikeTime , dff1 , dff_snr] = kmeans_sd_with_dff_thresh3(trace_features , ROI_tracein , K , dff_thresh)">kmeans_sd_with_dff_thresh3</a>(diffFeatures{bb} ,bkg_subtracted_traces{bb} , K , -10.0);
+0132                 rasterSpikeTimes{bb} = <a href="burstAggregator.html" class="code" title="function fireTimes = burstAggregator(spike_times , fireGap)">burstAggregator</a>(rasterSpikeTimes{bb} , rearm_factor);
+0133                 spikesDFFValues = [spikesDFFValues dffs{bb}];
+0134                 dffSNRValues = [dffSNRValues dff_snr{bb}];
+0135             <span class="keyword">end</span>
+0136 
+0137             note = <span class="string">''</span>;
+0138             <span class="keyword">if</span> length(stdname) &gt;= 4 &amp;&amp; strcmp(stdname(4),<span class="string">'-'</span>) == 1
+0139                 note = [note stdname(4:end)];
+0140             <span class="keyword">end</span>
+0141             <span class="keyword">if</span> length(curr_file_name) &gt;= 6 &amp;&amp; isstrprop(curr_file_name(end-5),<span class="string">'digit'</span>)
+0142                 note = [note <span class="string">'-'</span> curr_file_name(end-5)];
+0143             <span class="keyword">end</span>
+0144             [pathstr,t1,t2] = fileparts(stdFileNames{ff});
+0145             disp([<span class="string">'Saving data to '</span> pathstr <span class="string">'/spikesData'</span> note <span class="string">'.mat'</span>])
+0146             
+0147             save([pathstr <span class="string">'/spikesData'</span> note <span class="string">'.mat'</span>] , <span class="string">'clusters'</span> , <span class="keyword">...</span>
+0148                 <span class="string">'spikes_cluster_idx'</span> , <span class="string">'baseline_cluster_idx'</span> , <span class="keyword">...</span>
+0149                 <span class="string">'rasterSpikeTimes'</span> , <span class="string">'dffs'</span> , <span class="string">'bkg_subtracted_traces'</span> , <span class="keyword">...</span>
+0150                 <span class="string">'ROI_traces'</span> , <span class="string">'diffFeatures'</span> , <span class="string">'snappath'</span> , <span class="string">'textPos'</span> , <span class="string">'ROI_masks'</span> , <span class="keyword">...</span>
+0151                 <span class="string">'dff_snr'</span>);
+0152         <span class="keyword">end</span>
+0153     <span class="keyword">end</span>
+0154     set(handles.info_txt , <span class="string">'String'</span> , <span class="string">'Done!'</span>);
+0155 <span class="keyword">catch</span> ex1
+0156     set(handles.info_txt , <span class="string">'String'</span> , <span class="string">'Error!'</span>);  
+0157     disp(<span class="string">'--------------------ERROR!--------------------'</span>)
+0158     disp(getReport(ex1));
+0159     disp(<span class="string">'----------------------------------------------'</span>)
+0160     
+0161 <span class="keyword">end</span>
+0162 
+0163 guidata(hObject, handles);</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

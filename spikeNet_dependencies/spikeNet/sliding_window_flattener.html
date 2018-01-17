@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of sliding_window_flattener</title>
+  <meta name="keywords" content="sliding_window_flattener">
+  <meta name="description" content="Inputs: A trace and window size">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>sliding_window_flattener
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>Inputs: A trace and window size</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function lbtrace = sliding_window_flattener ( trace , window_size) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Inputs: A trace and window size 
+ At each frame, the baseline is calculated as the mean of +/-widnow_size 
+ excluding the current frame, and is subtracted from the current frame
+ Copyright 2016 The Miller Lab, UC Berkeley
+ Author: Kaveh Karbasi</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="batchkmeans_gui2.html" class="code" title="function varargout = batchkmeans_gui2(varargin)">batchkmeans_gui2</a>	BATCHKMEANS_GUI2 MATLAB code for batchkmeans_gui2.fig</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function lbtrace = sliding_window_flattener ( trace , window_size)</a>
+0002 <span class="comment">% Inputs: A trace and window size</span>
+0003 <span class="comment">% At each frame, the baseline is calculated as the mean of +/-widnow_size</span>
+0004 <span class="comment">% excluding the current frame, and is subtracted from the current frame</span>
+0005 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0006 <span class="comment">% Author: Kaveh Karbasi</span>
+0007     vidLength = numel(trace);
+0008     lbtrace = zeros(vidLength,1); 
+0009     
+0010     <span class="keyword">for</span> ii = 1 : vidLength
+0011         tmp = ii - window_size : ii + window_size;
+0012         baseIdx = tmp( tmp &gt; 0 &amp; tmp &lt; vidLength+1 &amp; tmp~=ii);
+0013         local_baseline = mean( trace( baseIdx ) );
+0014         lbtrace(ii) = trace(ii) - local_baseline;
+0015 
+0016     <span class="keyword">end</span>
+0017 
+0018     lbtrace(lbtrace &lt; 0) = 0;
+0019 
+0020     
+0021 
+0022 
+0023 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

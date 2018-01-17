@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of busydlg</title>
+  <meta name="keywords" content="busydlg">
+  <meta name="description" content="BUSYDLG Display message box without any user control">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>busydlg
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>BUSYDLG Display message box without any user control</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function h = busydlg(msg,title,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">BUSYDLG Display message box without any user control
+   H = BUSYBAR('message', property, value, property, value, ...) creates
+   and displays a dialog box displaying 'message'.  The handle to the
+   busydlg figure is returned in H. Optional arguments property and value
+   allow to set corresponding busydlg figure properties.
+
+   The dialog window is modal and cannot be closed with the close button.
+   Instead, it needs to be closed in the calling program by executing
+   delete(H). As an emergency alternative, the dialog can be forcibly
+   closed by pressing ctrl-c. To avoid such situation, the use of
+   TRY-CATCH block is recommended (as shown below).
+
+   Example:
+       h = busydlg('Please wait...','My Program');
+       try
+           % computation here %
+       catch
+          delete(h);
+       end
+       delete(h);</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="select_ROI_gui3.html" class="code" title="function varargout = select_ROI_gui3(varargin)">select_ROI_gui3</a>	SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig</li><li><a href="trace_browser.html" class="code" title="function varargout = trace_browser(varargin)">trace_browser</a>	TRACE_BROWSER MATLAB code for trace_browser.fig</li></ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function keypress(hObj,event)</a></li></ul>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function h = busydlg(msg,title,varargin)</a>
+0002 <span class="comment">%BUSYDLG Display message box without any user control</span>
+0003 <span class="comment">%   H = BUSYBAR('message', property, value, property, value, ...) creates</span>
+0004 <span class="comment">%   and displays a dialog box displaying 'message'.  The handle to the</span>
+0005 <span class="comment">%   busydlg figure is returned in H. Optional arguments property and value</span>
+0006 <span class="comment">%   allow to set corresponding busydlg figure properties.</span>
+0007 <span class="comment">%</span>
+0008 <span class="comment">%   The dialog window is modal and cannot be closed with the close button.</span>
+0009 <span class="comment">%   Instead, it needs to be closed in the calling program by executing</span>
+0010 <span class="comment">%   delete(H). As an emergency alternative, the dialog can be forcibly</span>
+0011 <span class="comment">%   closed by pressing ctrl-c. To avoid such situation, the use of</span>
+0012 <span class="comment">%   TRY-CATCH block is recommended (as shown below).</span>
+0013 <span class="comment">%</span>
+0014 <span class="comment">%   Example:</span>
+0015 <span class="comment">%       h = busydlg('Please wait...','My Program');</span>
+0016 <span class="comment">%       try</span>
+0017 <span class="comment">%           % computation here %</span>
+0018 <span class="comment">%       catch</span>
+0019 <span class="comment">%          delete(h);</span>
+0020 <span class="comment">%       end</span>
+0021 <span class="comment">%       delete(h);</span>
+0022 
+0023 <span class="comment">%   (c)2008 Takeshi Ikuma {tikuma@hotmail.remove.com}. All rights reserved.</span>
+0024 
+0025 narginchk(1,inf);
+0026 <span class="keyword">if</span> nargin&lt;2, title = <span class="string">''</span>; <span class="keyword">end</span>
+0027 
+0028 <span class="keyword">if</span> ~((ischar(msg) || iscellstr(msg)) &amp;&amp; (ischar(title) || iscellstr(title)))
+0029     error(<span class="string">'busybar:InvalidInputs'</span>, <span class="string">'First two input arguments must be the message string to be displayed.'</span>)
+0030 <span class="keyword">end</span>
+0031 
+0032 <span class="keyword">try</span>   h = dialog(varargin{:},<span class="string">'Name'</span>,title,<span class="string">'CloseRequestFcn'</span>,<span class="string">''</span>,<span class="keyword">...</span>
+0033         <span class="string">'KeypressFcn'</span>,@<a href="#_sub1" class="code" title="subfunction keypress(hObj,event)">keypress</a>);
+0034 <span class="keyword">catch</span> ME
+0035     error(<span class="string">'busybar:InvalidInputs'</span>,<span class="string">'Property and value pair input is not valid for figure object.'</span>);
+0036 <span class="keyword">end</span>
+0037 
+0038 <span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+0039 
+0040 width = 280;
+0041 msgwidth = width - 20; <span class="comment">% 10-pixel side margins</span>
+0042 
+0043 bgcolor = get(h,<span class="string">'Color'</span>);
+0044 
+0045 ui = uicontrol(<span class="string">'Parent'</span>,h,<span class="string">'Style'</span>,<span class="string">'text'</span>,<span class="string">'Position'</span>,[10 10 msgwidth 100],<span class="keyword">...</span>
+0046     <span class="string">'BackgroundColor'</span>,bgcolor , <span class="string">'FontSize'</span> , 12);
+0047 
+0048 [msg,pos] = textwrap(ui,cellstr(msg));
+0049 set(ui,<span class="string">'String'</span>,msg,<span class="string">'Position'</span>,pos);
+0050 set(h,<span class="string">'Position'</span>,[0,0,width,pos(4)+20]);
+0051 
+0052 movegui(h,<span class="string">'center'</span>);
+0053 drawnow;
+0054 
+0055 
+0056 <a name="_sub1" href="#_subfunctions" class="code">function keypress(hObj,event)</a>
+0057 <span class="keyword">if</span> isempty(event.Key), <span class="keyword">return</span>; <span class="keyword">end</span>
+0058 <span class="keyword">if</span> length(event.Key)==1 &amp;&amp; event.Key==<span class="string">'c'</span> &amp;&amp; strcmp(event.Modifier,<span class="string">'control'</span>)
+0059     closereq;
+0060 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

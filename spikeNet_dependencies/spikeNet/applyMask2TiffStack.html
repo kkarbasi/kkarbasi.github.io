@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of applyMask2TiffStack</title>
+  <meta name="keywords" content="applyMask2TiffStack">
+  <meta name="description" content="% applyMask2TiffStack(tiff_stack , mask)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html snr_of_dff_stuff -->
+<h1>applyMask2TiffStack
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>% applyMask2TiffStack(tiff_stack , mask)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function masked_tiff_stack = applyMask2TiffStack(tiff_stack , mask) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% applyMask2TiffStack(tiff_stack , mask)
+ Applies logical mask to all frames of an image stack.
+ The mask and the image stack height and width should be the same.
+ Returns a masked stack of the same height, width, and length .
+ Copyright 2016 The Miller Lab, UC Berkeley
+ Author: Kaveh Karbasi</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="getBkgSubtractedTraces.html" class="code" title="function [bkgSubtracted_traces , ROI_traces] = getBkgSubtractedTraces(tiffStack, ROI_masks , Bkg_mask , bkg_decision)">getBkgSubtractedTraces</a>	Inputs:</li><li><a href="select_ROI_gui3.html" class="code" title="function varargout = select_ROI_gui3(varargin)">select_ROI_gui3</a>	SELECT_ROI_GUI3 MATLAB code for select_ROI_gui3.fig</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% applyMask2TiffStack(tiff_stack , mask)</span>
+0002 <span class="comment">% Applies logical mask to all frames of an image stack.</span>
+0003 <span class="comment">% The mask and the image stack height and width should be the same.</span>
+0004 <span class="comment">% Returns a masked stack of the same height, width, and length .</span>
+0005 <span class="comment">% Copyright 2016 The Miller Lab, UC Berkeley</span>
+0006 <span class="comment">% Author: Kaveh Karbasi</span>
+0007 
+0008 <a name="_sub0" href="#_subfunctions" class="code">function masked_tiff_stack = applyMask2TiffStack(tiff_stack , mask)</a>
+0009 
+0010   h = waitbar(0 , <span class="string">'Applying mask...'</span>);
+0011   masked_tiff_stack = tiff_stack;
+0012   L = size(tiff_stack , 3);
+0013   waitbar(0.1 , h)
+0014   <span class="keyword">for</span> i = 1:L
+0015     masked_tiff_stack(:,:,i) = tiff_stack(:,:,i).*mask;
+0016 <span class="comment">%     if(rem(i , 20)==0)</span>
+0017 <span class="comment">%         waitbar(i/L , h);</span>
+0018 <span class="comment">%     end</span>
+0019   <span class="keyword">end</span>
+0020  waitbar(1 , h) 
+0021  close(h);
+0022 <span class="comment">%</span>
+0023     
+0024</pre></div>
+<hr><address>Generated on Tue 24-Jan-2017 12:45:06 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>
